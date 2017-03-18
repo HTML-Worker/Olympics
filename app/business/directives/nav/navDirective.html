@@ -1,0 +1,23 @@
+<nav class="index_nav">
+    <ul>
+        <li ng-repeat="item in navData">
+            <div class="nav_floor floor1">
+                <a href="#" ng-bind="item.name"></a>
+            </div>
+            <ul>
+                <li ng-repeat="item in item.list">
+                    <div class="nav_floor floor2">
+                        <a href="#" ng-bind="item.name"></a>
+                    </div>
+                    <ul>
+                        <li ng-repeat="item in item.list">
+                            <div class="nav_floor floor3">
+                                <a href="#" ng-bind="item.name"></a>
+                            </div>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</nav>
