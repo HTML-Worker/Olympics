@@ -6,23 +6,56 @@
   font-size: 15px;
   ul {
     list-style: none;
-    .nav_floor {
-      float: left;
-      padding-top: 7px;
+    float: left;
+    li {
+      float:left;
+      width:132px;
+      line-height: 34px;
+      position:relative;
+      text-align: center;
+      border-top:1px dotted #000;
+      border-left:1px dotted #000;
+      border-bottom:1px dotted #000;
       a {
-        width: 100%;
-        height: 100%;
-        padding: 7px 42px;
-        &:hover {
-          background: orange;
+        color:#666;
+        display:block;
+        font-family:Microsoft YaHei;
+      }
+    }
+  }
+  .floor1 {
+    li {
+      &:last-child {
+        border-right: 1px dotted #000;
+      }
+      &:hover {
+        background: orange;
+        > ul {
+          display: block;
+          li {
+            border-right: 1px dotted #000;
+            border-top: none;
+          }
         }
       }
     }
     .floor2 {
+      position: absolute;
       display: none;
-    }
-    .floor3 {
-      display: none;
+      margin-left: -41px;
+      li {
+        a {
+          text-align: left;
+        }
+      }
+      .floor3 {
+        position: absolute;
+        margin-left: 30px;
+        li {
+          width: 180px;
+          border-top: 1px dotted #000;
+        }
+      }
     }
   }
 }
