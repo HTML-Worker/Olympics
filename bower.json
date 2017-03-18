@@ -16,6 +16,8 @@
   ],
   "dependencies": {
     "jquery": "1.12.4",
-    "respond": "^1.4.2"
+    "respond": "^1.4.2",
+    "bootstrap": "3.3.7",
+    "bootbox.js": "bootbox#^4.4.0"
   }
 }
