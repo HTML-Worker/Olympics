@@ -1,0 +1,31 @@
+{
+  "name": "Olympics",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "安徽省青少年信息学奥赛平台"
+  ],
+  "author": "Bao Long",
+  "license": "ISC",
+  "devDependencies": {
+    "bower": "^1.8.0",
+    "event-stream": "^3.3.4",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-htmlbuild": "^0.4.2",
+    "gulp-live-server": "0.0.30",
+    "gulp-minify-css": "^1.2.4",
+    "gulp-notify": "^2.2.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-replace": "^0.5.4",
+    "gulp-sass": "^2.3.2",
+    "gulp-uglify": "^2.0.0",
+    "gulp-watch": "^4.3.10",
+    "gulp-plumber": "^1.1.0"
+  }
+}
