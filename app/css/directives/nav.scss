@@ -7,9 +7,11 @@
   ul {
     list-style: none;
     float: left;
+    margin: 0 0;
+    padding-left: 0;
     li {
       float:left;
-      width:132px;
+      width: 142.8px;
       line-height: 34px;
       position:relative;
       text-align: center;
@@ -42,7 +44,7 @@
     .floor2 {
       position: absolute;
       display: none;
-      margin-left: -41px;
+      margin-left: -1px;
       li {
         a {
           text-align: left;
@@ -50,7 +52,7 @@
       }
       .floor3 {
         position: absolute;
-        margin-left: 30px;
+        margin-left: 70px;
         li {
           width: 180px;
           border-top: 1px dotted #000;
