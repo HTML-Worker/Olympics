@@ -26,6 +26,11 @@
     }
   }
   .floor1 {
+    > li {
+      &:first-child {
+        background: orange;
+      }
+    }
     li {
       &:last-child {
         border-right: 1px dotted #000;
