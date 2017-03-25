@@ -77,5 +77,66 @@ var configData = {
         {
             name: "论坛"
         }
+    ],
+    indexContentRight: [
+        {
+            title: "NOI报名系统",
+            list:[
+                {
+                    name: "NOIP2016复赛报名"
+                },
+                {
+                    name: "NOI题库"
+                }
+            ]
+        },
+        {
+            "title": "技术规则",
+            list: [
+                {
+                    name: "NOI系列活动标准竞赛环境(2016年11月08日更新)"
+                },
+                {
+                    name: "NOI linux系统及安装文档下载(2016年10月8日更新)"
+                },
+                {
+                    name: "GUIDE 1.0.1正式版发布"
+                }
+            ]
+        },
+        {
+            title: "相关链接",
+            list: [
+                {
+                    name: "中国计算机学会"
+                },
+                {
+                    name: "IOI官方网站"
+                },
+                {
+                    name: "IOI秘书处"
+                },
+                {
+                    name: "IOI2014"
+                }
+            ]
+        },
+        {
+            title: "联系方式",
+            list: [
+                {
+                    name: "NOI各省特派员联系方式 "
+                },
+                {
+                    name: "NOI竞赛办公室 "
+                },
+                {
+                    name: "NOI技术解答："
+                },
+                {
+                    name: "此邮箱仅负责解答NOI的技术问题，非技术问题请联系NOI竞赛办公室。"
+                }
+            ]
+        }
     ]
 };

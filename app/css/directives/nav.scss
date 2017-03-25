@@ -15,9 +15,8 @@
       line-height: 34px;
       position:relative;
       text-align: center;
-      border-top:1px dotted #000;
-      border-left:1px dotted #000;
-      border-bottom:1px dotted #000;
+      border: 1px solid #666;
+      border-right: none;
       background: #eee;
       a {
         color:#666;
@@ -34,14 +33,14 @@
     }
     li {
       &:last-child {
-        border-right: 1px dotted #000;
+        border-right: 1px solid #666;;
       }
       &:hover {
         background: orange;
         > ul {
           display: block;
           li {
-            border-right: 1px dotted #000;
+            border-right: 1px solid #666;;
             border-top: none;
           }
         }
@@ -52,6 +51,7 @@
       display: none;
       margin-left: -1px;
       li {
+        width: 143.8px;
         a {
           text-align: left;
           margin-left: 10px;
@@ -62,7 +62,7 @@
         margin-left: 70px;
         li {
           width: 180px;
-          border-top: 1px dotted #000;
+          border-top: 1px solid #666;
         }
       }
     }

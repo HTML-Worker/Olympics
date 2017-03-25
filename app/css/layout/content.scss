@@ -1,0 +1,13 @@
+.index_content {
+  width: 100%;
+  .index_content_left {
+    width: 70%;
+    border:1px dotted #000;
+    float: left;
+  }
+  .index_content_right {
+    width: 29%;
+    float: right;
+    //border:1px dotted #000;
+  }
+}
