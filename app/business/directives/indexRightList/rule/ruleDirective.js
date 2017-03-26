@@ -24,5 +24,5 @@
 
     function ruleCtrl($location, $scope) {
         $scope.ruleData = configData.indexContentRight[1];
-    }
+}
 }());

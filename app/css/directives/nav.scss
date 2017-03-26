@@ -52,6 +52,9 @@
       margin-left: -1px;
       li {
         width: 143.8px;
+        &:first-child {
+          border-top: 1px solid #666;
+        }
         a {
           text-align: left;
           margin-left: 10px;
@@ -61,8 +64,13 @@
         position: absolute;
         margin-left: 70px;
         li {
+          &:first-child {
+            border-top: 1px solid #666;
+          }
+          &:last-child {
+            border-bottom: 1px solid #666;
+          }
           width: 180px;
-          border-top: 1px solid #666;
         }
       }
     }

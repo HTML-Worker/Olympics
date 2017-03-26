@@ -131,10 +131,9 @@ var configData = {
                     name: "NOI竞赛办公室 "
                 },
                 {
-                    name: "NOI技术解答："
-                },
-                {
-                    name: "此邮箱仅负责解答NOI的技术问题，非技术问题请联系NOI竞赛办公室。"
+                    name: "NOI技术解答：",
+                    content: "此邮箱仅负责解答NOI的技术问题，非技术问题请联系",
+                    alink: "NOI竞赛办公室。"
                 }
             ]
         }

@@ -4,8 +4,18 @@ body {
   font-size: 14px;
   margin: 0;
   padding: 0;
-  a:hover {
-    text-decoration: none;
+  background: #ebeae8;
+  a:link{
+    text-decoration:none;
+  }
+  a:visited{
+    text-decoration:none;
+  }
+  a:hover{
+    text-decoration:none;
+  }
+  a:active{
+    text-decoration:none;
   }
   .body_box {
     width: 1000px;

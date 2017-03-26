@@ -8,6 +8,15 @@
   .index_content_right {
     width: 29%;
     float: right;
+    li {
+      a {
+        color: #c05902;
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+
     //border:1px dotted #000;
   }
 }
