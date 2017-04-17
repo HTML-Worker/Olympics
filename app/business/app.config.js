@@ -5,6 +5,14 @@ var configData = {
         },
         {
             name: "关于NOI",
+            parent: "",
+            url: "/documentCreate",
+            route: {
+                templateUrl: "./business/modules/about/about.html",
+                controller: "aboutCtrl",
+                controllerAs: "vm"
+            },
+            isMenu: true,
             list:[
                 {
                     name: "简介"

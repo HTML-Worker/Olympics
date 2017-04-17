@@ -17,7 +17,11 @@
         <div nav-directive></div>
         <div search-bar-directive></div>
         <div class="index_content">
-            <div class="index_content_left"></div>
+            <div class="index_content_left">
+                <div class="main_content" ng-view>
+                    <div ng-include="'business/modules/about/about.html'"></div>
+                </div>
+            </div>
             <div class="index_content_right">
                 <div sign-up-directive></div>
                 <div rule-directive></div>
