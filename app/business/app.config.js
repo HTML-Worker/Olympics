@@ -1,7 +1,15 @@
 var configData = {
     nav: [
         {
-            name: "首页"
+            name: "首页",
+            parent: "",
+            url: "/home",
+            route: {
+                templateUrl: "./business/modules/home/home.html",
+                controller: "homeCtrl",
+                controllerAs: "vm"
+            },
+            isMenu: true
         },
         {
             name: "关于NOI",

@@ -18,9 +18,7 @@
         <div search-bar-directive></div>
         <div class="index_content">
             <div class="index_content_left">
-                <div class="main_content" ng-view>
-                    <div ng-include="'business/modules/about/about.html'"></div>
-                </div>
+                <div class="main_content" ng-view></div>
             </div>
             <div class="index_content_right">
                 <div sign-up-directive></div>
@@ -55,6 +53,8 @@
 <!-- 引入service\factory\provider\value\constants-->
 
 <!-- 引入 controller -->
+    <script type="text/javascript" src="business/modules/home/homeCtrl.js"></script>
+    <script type="text/javascript" src="business/modules/about/aboutCtrl.js"></script>
 <!-- endbuild -->
 </body>
 </html>
