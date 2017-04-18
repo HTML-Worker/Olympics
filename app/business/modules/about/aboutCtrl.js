@@ -4,13 +4,16 @@
         .controller("aboutCtrl", aboutCtrl);
 
     aboutCtrl.$inject = [
-        "$scope"
+        "$scope",
+        "$http",
+        "aboutService"
     ];
 
     /**
-     * 关于页面模块控制器
+     * 获取关于页面的数据
      */
-    function aboutCtrl($scope) {
-
+    function aboutCtrl($scope, $http, aboutService) {
+        $scope.aboutData = aboutService.getAboutData();
+        alert($scope.aboutData);
     }
 }());
