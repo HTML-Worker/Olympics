@@ -4,8 +4,10 @@
         .module("app")
         .config(config);
 
-    config.$inject = ['$httpProvider',
-        '$routeProvider'];
+    config.$inject = [
+        "$httpProvider",
+        "$routeProvider"
+    ];
 
     function config($httpProvider,
                     $routeProvider) {

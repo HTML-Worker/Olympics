@@ -4,8 +4,8 @@
         <div class="about_img"></div>
         <div class="about_content_links">
             <ul>
-                <li>
-                    <a href="#" ng-bind="aboutData[0].aboutTitle"></a>
+                <li ng-repeat="item in aboutData">
+                    <a href="#" ng-bind="item.aboutTitle"></a>
                 </li>
             </ul>
         </div>

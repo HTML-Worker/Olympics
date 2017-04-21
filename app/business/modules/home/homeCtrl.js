@@ -11,6 +11,9 @@
      * 首页模块控制器
      */
     function homeCtrl($scope) {
-
+        //alert($scope.aboutData);
     }
 }());
+
+
+
