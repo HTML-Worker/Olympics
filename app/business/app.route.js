@@ -11,13 +11,12 @@
 
     function config($httpProvider,
                     $routeProvider) {
-        /**
-         * 处理http请求验证token信息的工厂方法
-         */
-        /*$httpProvider.interceptors.push('httpInterceptor');*/
+
         setNav();
 
-        //在程序一开始获取到导航栏数据
+        /**
+         * 加载路由跳转
+         */
         function setNav() {
             var navData = configData.nav;
             for (var i = 0; i < navData.length; i++) {
@@ -25,9 +24,14 @@
                     $routeProvider.when(navData[i].url, navData[i].route);
                 }
             }
-            $routeProvider.otherwise({
-                redirectTo: navData[0].url
+            $routeProvider.when("/document/haha", {
+                templateUrl: "./business/modules/document/document.html",
+                controller: "documentCtrl",
+                controllerAs: "vm"
             });
+            // $routeProvider.otherwise({
+            //     redirectTo: navData[0].url
+            // });
         }
     }
 }());
