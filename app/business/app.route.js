@@ -24,7 +24,7 @@
                     $routeProvider.when(navData[i].url, navData[i].route);
                 }
             }
-            $routeProvider.when("/document/haha", {
+            $routeProvider.when("/document/:about*", {
                 templateUrl: "./business/modules/document/document.html",
                 controller: "documentCtrl",
                 controllerAs: "vm"
