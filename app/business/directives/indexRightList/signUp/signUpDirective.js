@@ -42,9 +42,9 @@
          * 后台配置了跨域请求头可以直接跨域请求了
          */
         // $http({
-        //     method: "get",
-        //     url: "http://localhost:8080/OlympicsAPI/rest/UserInfoService/3",
-        //     //data: {"id":123,"name":"tom"},
+        //     method: "post",
+        //     url: "http://localhost:8080/OlympicsAPI/rest/UserInfoService/aboutTitle",
+        //     data: {"name":"about","id":1},
         //     headers: {
         //         'Content-Type': 'application/x-www-form-urlencoded'
         //     }

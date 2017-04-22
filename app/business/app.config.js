@@ -1,4 +1,7 @@
 var configData = {
+    getDataUrl: {
+        about:"http://localhost:8080/OlympicsAPI/rest/UserInfoService/aboutTitle"
+    },
     nav: [
         {
             name: "首页",
