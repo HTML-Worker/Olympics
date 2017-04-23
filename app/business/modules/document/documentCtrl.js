@@ -20,7 +20,6 @@
             }
         }).success(function (data) {
             $scope.document = data[0];
-            //alert(data + "这是测试页面");
         }).error(function (data) {
             alert("error");
         });

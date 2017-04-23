@@ -3,14 +3,55 @@
     <div class="hotSpot_content">
         <div class="hotSpot_content_left">
             <div class="dynamic">
-                <div class="dynamic_title">动态</div>
-                <div>
+                <div class="hotSpot_content_title">动态</div>
+                <div class="hotSpot_content_content">
                     <ul ng-repeat="item in dynamic">
                         <a href="#/document/dynamic/{{item.id}}" ng-bind="item.title"></a>
                     </ul>
                 </div>
             </div>
+            <div class="student_activity">
+                <div class="hotSpot_content_title">学生活动</div>
+                <div class="hotSpot_content_content">
+                    <ul ng-repeat="item in studentActivity">
+                        <a href="#/document/student_activity/{{item.id}}" ng-bind="item.title"></a>
+                    </ul>
+                </div>
+            </div>
+            <div class="winners">
+                <div class="hotSpot_content_title">获奖名单</div>
+                <div class="hotSpot_content_content">
+                    <ul ng-repeat="item in winners">
+                        <a href="#/document/winners/{{item.id}}" ng-bind="item.title"></a>
+                    </ul>
+                </div>
+            </div>
         </div>
-        <div class="hotSpot_content_right"></div>
+        <div class="hotSpot_content_right">
+            <div class="teacher_training">
+                <div class="hotSpot_content_title">教师培训</div>
+                <div class="hotSpot_content_content">
+                    <ul ng-repeat="item in teacherraining">
+                        <a href="#/document/teacher_training/{{item.id}}" ng-bind="item.title"></a>
+                    </ul>
+                </div>
+            </div>
+            <div class="talk_and_sharing">
+                <div class="hotSpot_content_title">交流与分享</div>
+                <div class="hotSpot_content_content">
+                    <ul ng-repeat="item in talkSharing">
+                        <a href="#/document/talk_and_sharing/{{item.id}}" ng-bind="item.title"></a>
+                    </ul>
+                </div>
+            </div>
+            <div class="rules">
+                <div class="hotSpot_content_title">条例条规</div>
+                <div class="hotSpot_content_content">
+                    <ul ng-repeat="item in rules">
+                        <a href="#/document/rules/{{item.id}}" ng-bind="item.title"></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
     </div>
 </div>

@@ -14,6 +14,56 @@
     border-bottom: 1px solid #666;
   }
   .hotSpot_content {
-
+    width: 100%;
+    padding: 10px;
+    min-height: 580px;
+    .hotSpot_content_left {
+      width: 50%;
+      float: left;
+      .hotSpot_content_title {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 20px;
+      }
+      .hotSpot_content_content {
+        width: 100%;
+        line-height: 1.0;
+        font-size: 12px;
+        ul {
+          a {
+            color: #666;
+            &:hover {
+              text-decoration: underline;
+              color: #c05902;
+            }
+          }
+        }
+      }
+    }
+    .hotSpot_content_right {
+      width: 50%;
+      float: left;
+      .hotSpot_content_title {
+        width: 100%;
+        height: 30px;
+        line-height: 30px;
+        padding-left: 20px;
+      }
+      .hotSpot_content_content {
+        width: 100%;
+        line-height: 1.0;
+        font-size: 12px;
+        ul {
+          a {
+            color: #666;
+            &:hover {
+              text-decoration: underline;
+              color: #c05902;
+            }
+          }
+        }
+      }
+    }
   }
 }
