@@ -1,0 +1,16 @@
+<div class="hotSpot_box">
+    <div class="hotSpot_title">热点推荐</div>
+    <div class="hotSpot_content">
+        <div class="hotSpot_content_left">
+            <div class="dynamic">
+                <div class="dynamic_title">动态</div>
+                <div>
+                    <ul ng-repeat="item in dynamic">
+                        <a href="#/document/dynamic/{{item.id}}" ng-bind="item.title"></a>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="hotSpot_content_right"></div>
+    </div>
+</div>

@@ -30,7 +30,11 @@
         li {
           a {
             line-height: 1.5;
-            font-size: 14px;
+            font-size: 16px;
+            color: #c05902;
+            &:hover {
+              text-decoration: underline;
+            }
           }
         }
       }

@@ -29,6 +29,11 @@
                 controller: "documentCtrl",
                 controllerAs: "vm"
             });
+            $routeProvider.when("/document/:dynamic*", {
+                templateUrl: "./business/modules/document/document.html",
+                controller: "documentCtrl",
+                controllerAs: "vm"
+            });
             // $routeProvider.otherwise({
             //     redirectTo: navData[0].url
             // });

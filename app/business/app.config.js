@@ -1,6 +1,8 @@
+var globalUrl = globalUrl.api;
 var configData = {
     getDataUrl: {
-        about:"http://localhost:8080/OlympicsAPI/rest/UserInfoService/aboutTitle"
+        title: globalUrl + "UserInfoService/title/",
+        document: globalUrl + "UserInfoService/document/"
     },
     nav: [
         {

@@ -1,25 +1,22 @@
 (function () {
     angular
         .module("app")
-        .controller("documentCtrl", documentCtrl);
+        .controller("hotSpotCtrl", hotSpotCtrl);
 
-    documentCtrl.$inject = [
+    hotSpotCtrl.$inject = [
         "$scope",
-        "$http",
-        "$routeParams"
+        "$http"
     ];
 
-    function documentCtrl($scope, $http, $routeParams) {
-        var getUrl = $routeParams.about;
-        //var getDbMessage = getUrl.split("/");
+    function hotSpotCtrl($scope, $http) {
         $http({
             method: "get",
-            url: configData.getDataUrl.document + getUrl,
+            url: configData.getDataUrl.title + "dynamic" + "/0" + "/7",
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         }).success(function (data) {
-            $scope.document = data[0];
+            $scope.dynamic = data;
             //alert(data + "这是测试页面");
         }).error(function (data) {
             alert("error");
