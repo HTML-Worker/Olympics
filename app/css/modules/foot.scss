@@ -1,0 +1,15 @@
+.foot_box {
+  width: 100%;
+  bottom: 0;
+  float: left;
+  height: 60px;
+  background: #222;
+  margin-top: 20px;
+  .foot_content {
+    width: 100%;
+    text-align: center;
+    color: #666;
+    line-height: 60px;
+    font-size: 12px;
+  }
+}
