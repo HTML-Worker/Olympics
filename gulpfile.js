@@ -70,7 +70,7 @@ gulp.task('default', function () {
 
     gulp.watch(['./app/**/*'], function (file) {
         console.log('watching....');
-        // copyLib(rootPath, true); //这个一般不会更改
+        copyLib(rootPath, true); //这个一般不会更改
         copyAppFiles(rootPath, true);
         buildSass(rootPath, true);
         buildHtml(rootPath, true);

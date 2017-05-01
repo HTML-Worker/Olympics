@@ -6,10 +6,11 @@
     documentCtrl.$inject = [
         "$scope",
         "$http",
-        "$routeParams"
+        "$routeParams",
+        "$sce"
     ];
 
-    function documentCtrl($scope, $http, $routeParams) {
+    function documentCtrl($scope, $http, $routeParams, $sce) {
         var getUrl = $routeParams.about;
         //var getDbMessage = getUrl.split("/");
         $http({
@@ -17,9 +18,11 @@
             url: configData.getDataUrl.document + getUrl,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
+                //'Content-Type': 'text/plain'
             }
         }).success(function (data) {
             $scope.document = data[0];
+            $scope.document.content = $sce.trustAsHtml($scope.document.content);
         }).error(function (data) {
             alert("error");
         });

@@ -31,7 +31,14 @@ var configData = {
                     name: "简介"
                 },
                 {
-                    name: "条例条规"
+                    name: "条例条规",
+                    parent: "",
+                    url: "/titleLists",
+                    route: {
+                        templateUrl: "./business/modules/titleLists/titleLists.html",
+                        controller: "titleListsCtrl",
+                        controllerAs: "vm"
+                    }
                 },
                 {
                     name: "组织机构"
@@ -104,10 +111,13 @@ var configData = {
             title: "NOI报名系统",
             list:[
                 {
-                    name: "NOIP2016复赛报名"
+                    name: "NOIP2016复赛报名",
+                    url: "/login.html#/login",
+                    redirect: true
                 },
                 {
-                    name: "NOI题库"
+                    name: "NOI题库",
+                    redirect: true
                 }
             ]
         },
@@ -157,6 +167,17 @@ var configData = {
                     alink: "NOI竞赛办公室。"
                 }
             ]
+        }
+    ],
+    login: [
+        {
+            name:"登录页",
+            url: "/login",
+            route: {
+                templateUrl: "./business/modules/login/login.html",
+                controller: "loginCtrl",
+                controllerAs: "vm"
+            }
         }
     ]
 };

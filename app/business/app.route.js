@@ -19,9 +19,15 @@
          */
         function setNav() {
             var navData = configData.nav;
+            var loginData = configData.login;
             for (var i = 0; i < navData.length; i++) {
                 if (navData[i].url !== "") {
                     $routeProvider.when(navData[i].url, navData[i].route);
+                }
+            }
+            for (var j = 0; j < loginData.length; j++) {
+                if (loginData[j].url !== "") {
+                    $routeProvider.when(loginData[j].url, loginData[j].route);
                 }
             }
             $routeProvider.when("/document/:about*", {

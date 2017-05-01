@@ -15,6 +15,7 @@ var copyLib = function(rootPath, isDev){
         gulp.src(['./libs/rem/rem.js']).pipe(gulp.dest(rootPath+'/libs/rem'));
 
         gulp.src(['./bower_components/jquery/dist/*.*']).pipe(gulp.dest(rootPath+'/libs/jquery/dist'));
+        gulp.src(['./bower_components/bootstrapValidator/dist/**/*']).pipe(gulp.dest(rootPath+'/libs/bootstrapValidator/dist'));
 
         gulp.src(['./bower_components/bootstrap/dist/**/*']).pipe(gulp.dest(rootPath+'/libs/bootstrap/dist'));
         gulp.src(['./bower_components/bootbox.js/bootbox.js']).pipe(gulp.dest(rootPath+'/libs/bootbox'));
@@ -46,6 +47,7 @@ var copyLib = function(rootPath, isDev){
         gulp.src(['./bower_components/jquery/dist/jquery.min.js']).pipe(gulp.dest(rootPath+'/libs/jquery/dist'));
 
         gulp.src(['./bower_components/bootstrap/dist/**/*']).pipe(gulp.dest(rootPath+'/libs/bootstrap/dist'));
+        gulp.src(['./bower_components/bootstrapValidator/dist/**/*']).pipe(gulp.dest(rootPath+'/libs/bootstrapValidator/dist'));
         gulp.src(['./bower_components/bootbox.js/bootbox.js']).pipe(gulp.dest(rootPath+'/libs/bootbox'));
         gulp.src(['./bower_components/font-awesome/css/**/*']).pipe(gulp.dest(rootPath+'/libs/font-awesome/css'));
         gulp.src(['./bower_components/font-awesome/fonts/**/*']).pipe(gulp.dest(rootPath+'/libs/font-awesome/fonts'));
