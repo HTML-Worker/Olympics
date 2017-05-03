@@ -178,6 +178,23 @@ var configData = {
                 controller: "loginCtrl",
                 controllerAs: "vm"
             }
+        },
+        {
+            name:"用户注册",
+            url: "/loginInit",
+            route: {
+                templateUrl: "./business/modules/loginInit/loginInit.html",
+                controller: "loginInitCtrl",
+                controllerAs: "vm"
+            }
         }
     ]
 };
+
+var schoolName = [
+    "安徽省第一中学",
+    "安徽省第二中学",
+    "安徽省第三中学",
+    "安徽省第四中学",
+    "安徽省实验高学"
+];

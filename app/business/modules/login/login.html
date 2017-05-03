@@ -1,34 +1,123 @@
-<div class="col-md-offset-4 col-md-4" >
-    <div class="panel panel-primary" style="margin-top:3em;" >
+<div class="login_content_left">
+    <div class="panel panel-primary col-lg-3" style="margin-top:1em;" >
         <div id="myTabContent" class="tab-content">
-            <div class="tab-pane fade in active" id="Prv">
-                <div class="panel-body">
+            <div class="panel-body">
+                <form name="LoginG" id="LoginG" method="post"><br />
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">账号</span>
-                            <input name="Username" type="text" class="form-control" placeholder="用户名" >
-                            <!--<span class="help-block" id="UsernameMessage" /> -->
+                            <input name="Username" type="text" class="form-control" placeholder="用户名" />
                         </div><br />
-                    </div><!-- /form-group-->
+                    </div>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">密码</span>
                             <input name="Password" type="Password" class="form-control" placeholder="密码">
-                            <!--<span class="help-block" id="PasswordMessage" /> -->
                         </div>
-                    </div><!-- /form-group-->
+                    </div>
                     <h5>请将如下计算结果填入文本框内：</h5>
                     <div class="form-group form-horizontal">
-                        <label class="col-lg-3 control-label " id="captchaOperation"></label>
-                        <div class="col-lg-9">
+                        <label class="col-lg-4 control-label " id="captchaOperation"></label>
+                        <div class="col-lg-8">
                             <input type="text" class="form-control " name="captcha" />
                         </div>
-                    </div><br /><br /> <br />
+                    </div><br /><br />
+                    <div class="form-group">
+                        <div class="col-lg-6">
+                            <a href="#/forget">忘记密码</a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="#/loginInit">用户注册</a>
+                        </div>
+                    </div><br />
                     <div class="form-group">
                         <input class="btn  btn-primary btn-block" type="submit"  value="登　　录" />
                     </div>
-                </div><!-- /panel-body -->
-            </div><!-- tab-pane fade in active-->
+                </form>
+            </div>
         </div>
     </div>
 </div>
+<div class="login_content_right">
+    <div class="panel panel-primary col-lg-9" style="margin-top:1em;min-height: 560px;">
+        <div class="form-group" style="border-bottom: 2px solid #337ab7">
+            <h4>新闻及注意事项</h4>
+        </div>
+        <div class="form-group">
+            这是文章内容
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        function randomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        function generateCaptcha() {
+            $('#captchaOperation').html([randomNumber(1, 50), '+', randomNumber(1, 50), '='].join(' '));
+        }
+        generateCaptcha();
+
+        /**
+         * 账号规则
+         */
+        $('#LoginG')
+            .bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    Username: {
+                        message: 'The username is not valid',
+                        validators: {
+                            notEmpty: {
+                                message: '账户不能为空!'
+                            },
+                            stringLength: {
+                                min: 5,
+                                max: 10,
+                                message: '账号长度 5-10'
+                            },
+                            /*remote: {
+                             url: 'remote.php',
+                             message: 'The username is not available'
+                             },*/
+//                            regexp: {
+//                                regexp: /^[a-zA-Z0-9_\.]+$/,
+//                                message: '只接受数字和字母 '
+//                            }
+                        }
+                    },
+                    Password: {
+                        validators: {
+                            notEmpty: {
+                                message: '密码不能为空!'
+                            }
+                        }
+                    },
+                    captcha: {
+                        validators: {
+                            callback: {
+                                message: '验证码错误!',
+                                callback: function (value, validator) {
+                                    var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+                                    return value == sum;
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+            .on('error.form.bv', function (e) {
+                var $form = $(e.target),
+                    bootstrapValidator = $form.data('bootstrapValidator');
+                if (!bootstrapValidator.isValidField('captcha')) {
+                    generateCaptcha();
+                }
+            });
+    });
+</script>

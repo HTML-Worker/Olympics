@@ -1,0 +1,241 @@
+<div class="login_content_left">
+    <div class="panel panel-primary col-lg-3" style="margin-top:1em;" >
+        <div id="myTabContent" class="tab-content">
+            <div class="panel-body">
+                <div id="LoginG"><br />
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">账号</span>
+                            <input name="Username" type="text" class="form-control" placeholder="用户名" >
+                        </div><br />
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-addon">密码</span>
+                            <input name="Password" type="Password" class="form-control" placeholder="密码">
+                        </div>
+                    </div>
+                    <h5>请将如下计算结果填入文本框内：</h5>
+                    <div class="form-group form-horizontal">
+                        <label class="col-lg-4 control-label " id="captchaOperation"></label>
+                        <div class="col-lg-8">
+                            <input type="text" class="form-control " name="captcha" />
+                        </div>
+                    </div><br /><br />
+                    <div class="form-group">
+                        <div class="col-lg-6">
+                            <a href="#/forget">忘记密码</a>
+                        </div>
+                        <div class="col-lg-6">
+                            <a href="#/loginInit">用户注册</a>
+                        </div>
+                    </div><br />
+                    <div class="form-group">
+                        <input class="btn  btn-primary btn-block" type="submit"  value="登　　录" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="login_content_right">
+    <div class="panel panel-primary col-lg-9">
+        <div class="form-group col-lg-12" style="border-bottom: 2px solid #337ab7; padding: 0;">
+                <div class="col-lg-6" style="padding: 0;">
+                    <h4>用户注册</h4>
+                </div>
+                <div class="col-lg-6 btn_back">
+                    <input ng-click="loginBack()" class="btn  btn-primary btn-block" type="button"  value="返　　回" />
+                </div>
+            </div>
+        <div class="login_init_choice" ng-hide="loginInitChoice">
+            <div class="form-group choice_type">
+                <input type="button" class="btn  btn-primary btn-block" value="请选择注册类型">
+                <input ng-click="teacherRegister()" type="button" class="btn  btn-primary btn-block" value="教师注册">
+                <input ng-click="studentRegister()" type="button" class="btn  btn-primary btn-block" value="选手注册">
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="teacher_register_view" id="teacherRegisterView" ng-hide="teacherRegisterView">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">账  号</span>
+                        <input ng-model="form.username" name="Username" type="text" class="form-control" placeholder="用户名" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">密  码</span>
+                        <input ng-model="form.password" name="Password" type="password" class="form-control" placeholder="密码" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">姓  名</span>
+                        <input ng-model="form.name" name="name" type="text" class="form-control" placeholder="姓名" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">性  别</span>
+                        <select id="sex" class="form-control">
+                            <option>男</option>
+                            <option>女</option>
+                        </select>
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">身份证号</span>
+                        <input ng-model="form.peopleId" name="peopleId" type="text" class="form-control" placeholder="身份证号" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">所在学校</span>
+                        <select id="school" class="form-control">
+                            <option ng-repeat="item in schoolName">{{item}}</option>
+                        </select>
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">年  级</span>
+                        <select id="grade" class="form-control">
+                            <option>初中（一年级）</option>
+                            <option>初中（二年级）</option>
+                            <option>初中（三年级）</option>
+                            <option>高中（一年级）</option>
+                            <option>高中（二年级）</option>
+                            <option>高中（三年级）</option>
+                        </select>
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <input  ng-click="submit()" class="btn  btn-primary btn-block" type="submit"  value="提    交" />
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="teacher_register_view" ng-hide="studentRegisterView"></div>
+    </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        function randomNumber(min, max) {
+            return Math.floor(Math.random() * (max - min + 1) + min);
+        }
+        function generateCaptcha() {
+            $('#captchaOperation').html([randomNumber(1, 50), '+', randomNumber(1, 50), '='].join(' '));
+        }
+        generateCaptcha();
+
+        /**
+         * 账号规则
+         */
+        $('#LoginG')
+            .bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    Username: {
+                        message: 'The username is not valid',
+                        validators: {
+                            notEmpty: {
+                                message: '账户不能为空!'
+                            },
+                            stringLength: {
+                                min: 5,
+                                max: 10,
+                                message: '账号长度 5-10'
+                            },
+                            /*remote: {
+                             url: 'remote.php',
+                             message: 'The username is not available'
+                             },*/
+//                            regexp: {
+//                                regexp: /^[a-zA-Z0-9_\.]+$/,
+//                                message: '只接受数字和字母 '
+//                            }
+                        }
+                    },
+                    Password: {
+                        validators: {
+                            notEmpty: {
+                                message: '密码不能为空!'
+                            }
+                        }
+                    },
+                    captcha: {
+                        validators: {
+                            callback: {
+                                message: '验证码错误!',
+                                callback: function (value, validator) {
+                                    var items = $('#captchaOperation').html().split(' '), sum = parseInt(items[0]) + parseInt(items[2]);
+                                    return value == sum;
+                                }
+                            }
+                        }
+                    }
+                }
+            })
+            .on('error.form.bv', function (e) {
+                var $form = $(e.target),
+                    bootstrapValidator = $form.data('bootstrapValidator');
+                if (!bootstrapValidator.isValidField('captcha')) {
+                    generateCaptcha();
+                }
+            });
+
+        $('#teacherRegisterView')
+            .bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    Username: {
+                        message: 'The username is not valid',
+                        validators: {
+                            notEmpty: {
+                                message: '账户不能为空!'
+                            },
+                            stringLength: {
+                                min: 5,
+                                max: 10,
+                                message: '账号长度 5-10'
+                            }
+                            /*remote: {
+                             url: 'remote.php',
+                             message: 'The username is not available'
+                             },*/
+//                            regexp: {
+//                                regexp: /^[a-zA-Z0-9_\.]+$/,
+//                                message: '只接受数字和字母 '
+//                            }
+                        }
+                    },
+                    Password: {
+                        validators: {
+                            notEmpty: {
+                                message: '密码不能为空!'
+                            }
+                        }
+                    }
+                }
+            })
+            .on('error.form.bv', function (e) {
+                var $form = $(e.target),
+                    bootstrapValidator = $form.data('bootstrapValidator');
+                if (!bootstrapValidator.isValidField('captcha')) {
+                    generateCaptcha();
+                }
+            });
+    });
+</script>

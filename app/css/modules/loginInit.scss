@@ -1,0 +1,48 @@
+.login_content_right {
+  .panel {
+    margin-top:1em;
+    min-height: 560px;
+    .btn_back {
+      input {
+        width: 20%;
+        float: right;
+        margin-top: 2px;
+      }
+    }
+    .login_init_choice {
+      .choice_type {
+        padding-top: 100px;
+        margin: 0 auto;
+        width: 35%;
+        input {
+          font-size: 18px;
+          line-height: 46px;
+          color: #333;
+          &:first-child {
+            margin-bottom: 50px;
+          }
+          &:nth-child(2) {
+            background: #d9edf7;
+          }
+          &:last-child {
+            background: #d9edf7;
+          }
+        }
+      }
+    }
+    .panel-body {
+      padding: 56px;
+      .teacher_register_view {
+        width: 50%;
+        margin: 0 auto;
+        .form-group {
+          margin-bottom: 0;
+          small {
+            margin-top: -16px;
+          }
+        }
+      }
+    }
+  }
+
+}
