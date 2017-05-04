@@ -65,11 +65,22 @@
          * 返回按钮绑定事件
          */
         $scope.loginBack = function () {
-            location.hash = "login";
+            if (false === $scope.loginInitChoice) {
+                location.hash = "login";
+            }
+            else if (false === $scope.studentRegisterView) {
+                $scope.loginInitChoice = false;
+                $scope.studentRegisterView = true;
+            }
+            else if (false === $scope.teacherRegisterView) {
+                $scope.loginInitChoice = false;
+                $scope.teacherRegisterView = true;
+            }
         };
-        
-        $scope.teacherRegister = function () {
 
+        $scope.teacherRegister = function () {
+            $scope.loginInitChoice = true;
+            $scope.teacherRegisterView = false;
         };
         
         $scope.studentRegister = function () {
