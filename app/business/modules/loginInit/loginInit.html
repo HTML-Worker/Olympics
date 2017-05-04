@@ -56,38 +56,49 @@
             </div>
         </div>
         <div class="panel-body">
-            <div class="teacher_register_view" id="teacherRegisterView" ng-hide="teacherRegisterView">
+            <div class="student_register_view" id="studentRegisterView" ng-hide="studentRegisterView">
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon">账  号</span>
-                        <input ng-model="form.username" name="Username" type="text" class="form-control" placeholder="用户名" >
+                        <input ng-model="form.username" name="Username" type="text" class="form-control" placeholder="字母和数字的组合>5位数" >
                     </div><br />
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon">密  码</span>
-                        <input ng-model="form.password" name="Password" type="password" class="form-control" placeholder="密码" >
+                        <input ng-model="form.password" name="Password" type="password" class="form-control" placeholder="字母和数字的组合>5位数" >
                     </div><br />
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon">姓  名</span>
-                        <input ng-model="form.name" name="name" type="text" class="form-control" placeholder="姓名" >
+                        <input ng-model="form.name" name="Name" type="text" class="form-control" placeholder="请填写真实姓名" >
                     </div><br />
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon">性  别</span>
                         <select id="sex" class="form-control">
-                            <option>男</option>
-                            <option>女</option>
+                            <option ng-repeat="item in sex">{{item}}</option>
                         </select>
                     </div><br />
                 </div>
                 <div class="form-group">
                     <div class="input-group">
                         <span class="input-group-addon">身份证号</span>
-                        <input ng-model="form.peopleId" name="peopleId" type="text" class="form-control" placeholder="身份证号" >
+                        <input ng-model="form.peopleId" name="PeopleId" type="text" class="form-control" placeholder="" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">联系电话</span>
+                        <input ng-model="form.phone" name="PhoneNumber" type="text" class="form-control" placeholder="" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">电子邮件</span>
+                        <input ng-model="form.email" name="email" type="email" class="form-control" placeholder="" >
                     </div><br />
                 </div>
                 <div class="form-group">
@@ -102,12 +113,29 @@
                     <div class="input-group">
                         <span class="input-group-addon">年  级</span>
                         <select id="grade" class="form-control">
-                            <option>初中（一年级）</option>
-                            <option>初中（二年级）</option>
-                            <option>初中（三年级）</option>
-                            <option>高中（一年级）</option>
-                            <option>高中（二年级）</option>
-                            <option>高中（三年级）</option>
+                            <option ng-repeat="item in grade">{{item}}</option>
+                        </select>
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">参赛语言</span>
+                        <select id="language" class="form-control">
+                            <option ng-repeat="item in language">{{item}}</option>
+                        </select>
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">指导教师</span>
+                        <input ng-model="form.teacherName" name="TeacherName" type="text" class="form-control" placeholder="指导教师姓名" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">参赛类型</span>
+                        <select id="entryType" class="form-control">
+                            <option ng-repeat="item in entryType">{{item}}</option>
                         </select>
                     </div><br />
                 </div>
@@ -117,7 +145,7 @@
             </div>
         </div>
     </div>
-    <div class="teacher_register_view" ng-hide="studentRegisterView"></div>
+    <div class="teacher_register_view" ng-hide="teacherRegisterView"></div>
     </div>
 
 <script type="text/javascript">
@@ -191,7 +219,7 @@
                 }
             });
 
-        $('#teacherRegisterView')
+        $('#studentRegisterView')
             .bootstrapValidator({
                 message: 'This value is not valid',
                 feedbackIcons: {
@@ -227,7 +255,44 @@
                                 message: '密码不能为空!'
                             }
                         }
+                    },
+                    Name: {
+                        validators: {
+                            notEmpty: {
+                                message: '姓名不能为空!'
+                            }
+                        }
+                    },
+                    PeopleId: {
+                        validators: {
+                            notEmpty: {
+                                message: '证件号不能为空!'
+                            },
+                            regexp: {
+                               regexp: /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i,
+                               message: '证件号填写错误 ！'
+                            }
+                        }
+                    },
+                    PhoneNumber: {
+                        validators: {
+                            notEmpty: {
+                                message: '联系电话不能为空!'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]/,
+                                message: '号码格式不正确，不包含区号 '
+                            }
+                        }
+                    },
+                    TeacherName: {
+                        validators: {
+                            notEmpty: {
+                                message: '不可为空!'
+                            }
+                        }
                     }
+
                 }
             })
             .on('error.form.bv', function (e) {
