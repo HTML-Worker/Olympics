@@ -41,13 +41,13 @@
 <div class="login_content_right">
     <div class="panel panel-primary col-lg-9">
         <div class="form-group col-lg-12" style="border-bottom: 2px solid #337ab7; padding: 0;">
-                <div class="col-lg-6" style="padding: 0;">
-                    <h4>用户注册</h4>
+            <div class="col-lg-6" style="padding: 0;">
+                    <h4>{{titleName}}</h4>
                 </div>
-                <div class="col-lg-6 btn_back">
+            <div class="col-lg-6 btn_back">
                     <input ng-click="loginBack()" class="btn  btn-primary btn-block" type="button"  value="返　　回" />
                 </div>
-            </div>
+        </div>
         <div class="login_init_choice" ng-hide="loginInitChoice">
             <div class="form-group choice_type">
                 <input type="button" class="btn  btn-primary btn-block" value="请选择注册类型">
@@ -140,13 +140,79 @@
                     </div><br />
                 </div>
                 <div class="form-group">
-                    <input  ng-click="submit()" class="btn  btn-primary btn-block" type="submit"  value="提    交" />
+                    <input  ng-click="studentSubmit()" class="btn  btn-primary btn-block" type="submit"  value="提    交" />
+                </div>
+            </div>
+            <div class="teacher_register_view" id="teacherRegisterView" ng-hide="teacherRegisterView">
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">账  号</span>
+                        <input ng-model="teacherForm.username" name="Username" type="text" class="form-control" placeholder="字母和数字的组合>5位数" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">密  码</span>
+                        <input ng-model="teacherForm.password" name="Password" type="password" class="form-control" placeholder="字母和数字的组合>5位数" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">姓  名</span>
+                        <input ng-model="teacherForm.name" name="Name" type="text" class="form-control" placeholder="请填写真实姓名" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">性  别</span>
+                        <select id="teacherSex" class="form-control">
+                            <option ng-repeat="item in sex">{{item}}</option>
+                        </select>
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">身份证号</span>
+                        <input ng-model="teacherForm.peopleId" name="PeopleId" type="text" class="form-control" placeholder="" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">联系电话</span>
+                        <input ng-model="teacherForm.phone" name="PhoneNumber" type="text" class="form-control" placeholder="" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">电子邮件</span>
+                        <input ng-model="teacherForm.email" name="email" type="email" class="form-control" placeholder="" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">所在学校</span>
+                        <input ng-model="teacherForm.school" name="school" type="text" class="form-control" placeholder="" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">学校地址</span>
+                        <input ng-model="teacherForm.address" name="Address" type="text" class="form-control" placeholder="" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <div class="input-group">
+                        <span class="input-group-addon">邮  编</span>
+                        <input ng-model="teacherForm.zipCode" name="ZipCode" type="text" class="form-control" placeholder="" >
+                    </div><br />
+                </div>
+                <div class="form-group">
+                    <input  ng-click="teacherSubmit()" class="btn  btn-primary btn-block" type="submit"  value="提    交" />
                 </div>
             </div>
         </div>
     </div>
-    <div class="teacher_register_view" ng-hide="teacherRegisterView"></div>
-    </div>
+</div>
 
 <script type="text/javascript">
     $(document).ready(function() {
@@ -178,17 +244,9 @@
                             },
                             stringLength: {
                                 min: 5,
-                                max: 10,
-                                message: '账号长度 5-10'
-                            },
-                            /*remote: {
-                             url: 'remote.php',
-                             message: 'The username is not available'
-                             },*/
-//                            regexp: {
-//                                regexp: /^[a-zA-Z0-9_\.]+$/,
-//                                message: '只接受数字和字母 '
-//                            }
+                                max: 20,
+                                message: '账号长度 5-20'
+                            }
                         }
                     },
                     Password: {
@@ -236,23 +294,20 @@
                             },
                             stringLength: {
                                 min: 5,
-                                max: 10,
-                                message: '账号长度 5-10'
+                                max: 20,
+                                message: '账号长度 5-20'
                             }
-                            /*remote: {
-                             url: 'remote.php',
-                             message: 'The username is not available'
-                             },*/
-//                            regexp: {
-//                                regexp: /^[a-zA-Z0-9_\.]+$/,
-//                                message: '只接受数字和字母 '
-//                            }
                         }
                     },
                     Password: {
                         validators: {
                             notEmpty: {
                                 message: '密码不能为空!'
+                            },
+                            stringLength: {
+                                min: 5,
+                                max: 20,
+                                message: '密码长度 5-20'
                             }
                         }
                     },
@@ -281,7 +336,7 @@
                             },
                             regexp: {
                                 regexp: /^[0-9]/,
-                                message: '号码格式不正确，不包含区号 '
+                                message: '号码格式不正确! '
                             }
                         }
                     },
@@ -293,6 +348,102 @@
                         }
                     }
 
+                }
+            })
+            .on('error.form.bv', function (e) {
+                var $form = $(e.target),
+                    bootstrapValidator = $form.data('bootstrapValidator');
+                if (!bootstrapValidator.isValidField('captcha')) {
+                    generateCaptcha();
+                }
+            });
+
+        $('#teacherRegisterView')
+            .bootstrapValidator({
+                message: 'This value is not valid',
+                feedbackIcons: {
+                    valid: 'glyphicon glyphicon-ok',
+                    invalid: 'glyphicon glyphicon-remove',
+                    validating: 'glyphicon glyphicon-refresh'
+                },
+                fields: {
+                    Username: {
+                        message: 'The username is not valid',
+                        validators: {
+                            notEmpty: {
+                                message: '账户不能为空!'
+                            },
+                            stringLength: {
+                                min: 5,
+                                max: 20,
+                                message: '账号长度 5-20'
+                            }
+                        }
+                    },
+                    Password: {
+                        validators: {
+                            notEmpty: {
+                                message: '密码不能为空!'
+                            },
+                            stringLength: {
+                                min: 5,
+                                max: 20,
+                                message: '密码长度 5-20'
+                            }
+                        }
+                    },
+                    Name: {
+                        validators: {
+                            notEmpty: {
+                                message: '姓名不能为空!'
+                            }
+                        }
+                    },
+                    PeopleId: {
+                        validators: {
+                            notEmpty: {
+                                message: '证件号不能为空!'
+                            },
+                            regexp: {
+                                regexp: /^\d{6}(18|19|20)?\d{2}(0[1-9]|1[12])(0[1-9]|[12]\d|3[01])\d{3}(\d|X)$/i,
+                                message: '证件号填写错误 ！'
+                            }
+                        }
+                    },
+                    PhoneNumber: {
+                        validators: {
+                            notEmpty: {
+                                message: '联系电话不能为空!'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]/,
+                                message: '号码格式不正确!'
+                            }
+                        }
+                    },
+                    Address: {
+                        validators: {
+                            notEmpty: {
+                                message: '地址不能为空!'
+                            }
+                        }
+                    },
+                    ZipCode: {
+                        validators: {
+                            notEmpty: {
+                                message: '邮编不可为空!'
+                            },
+                            stringLength: {
+                                min: 6,
+                                max: 6,
+                                message: '邮编为6位数字!'
+                            },
+                            regexp: {
+                                regexp: /^[0-9]/,
+                                message: '邮编为6位数字!'
+                            }
+                        }
+                    }
                 }
             })
             .on('error.form.bv', function (e) {
