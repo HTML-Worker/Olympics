@@ -5,7 +5,8 @@ var configData = {
         document: globalUrl + "UserInfoService/document/",
         newsNotes:  globalUrl + "UserInfoService/newsNotes/",
         loginIned: globalUrl + "LandMessage/loginIned",
-        studentLoginMessage: globalUrl + "StudentMessage/studentMessage/"
+        studentLoginMessage: globalUrl + "StudentMessage/studentMessage/",
+        teacherLoginMessage: globalUrl + "TeacherMessage/teacherMessage/"
     },
     nav: [
         {
@@ -197,6 +198,15 @@ var configData = {
             route: {
                 templateUrl: "./business/modules/manage/studentView/studentView.html",
                 controller: "studentViewCtrl",
+                controllerAs: "vm"
+            }
+        },
+        {
+            name:"教师管理页面",
+            url: "/manage/teacherView",
+            route: {
+                templateUrl: "./business/modules/manage/teacherView/teacherView.html",
+                controller: "teacherViewCtrl",
                 controllerAs: "vm"
             }
         }

@@ -1,15 +1,15 @@
 (function () {
     angular
         .module("app")
-        .controller("dataViewCtrl", dataViewCtrl);
+        .controller("dataStuViewCtrl", dataStuViewCtrl);
 
-    dataViewCtrl.$inject = [
+    dataStuViewCtrl.$inject = [
         "$scope",
         "$location",
         "$http"
     ];
 
-    function dataViewCtrl($scope, $location, $http) {
+    function dataStuViewCtrl($scope, $location, $http) {
         $scope.inputPE = true;
         $http({
             method: "get",

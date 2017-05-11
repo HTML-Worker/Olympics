@@ -34,10 +34,13 @@
                         $scope.password = "";
                     }
                     else {
+                        pushLoginData(data[0]);
                         bootbox.alert("登录成功！");
-                        if (data[0].message === "student") {
-                            pushLoginData(data[0]);
+                        if ("student" === data[0].message ) {
                             location.hash = "/manage/studentView";
+                        }
+                        else if ("teacher" === data[0].message) {
+                            location.hash = "/manage/teacherView";
                         }
                     }
                 }).error(function (data) {
