@@ -1,0 +1,28 @@
+<div class="manage_content_left">
+    <div class="panel col-lg-2" style="margin-top:1em;" >
+        <div class="tab-content">
+            <div class="panel-body">
+                <div class="form-group">
+                        <input ng-click="dataViewShow()" class="btn  btn-primary btn-block" type="submit"  value="我的资料" />
+                    </div>
+                <div class="form-group">
+                    <input class="btn  btn-primary btn-block" type="submit"  value="竞赛管理" />
+                </div>
+                <hr>
+                <div class="form-group">
+                    <input ng-click="backToLogin()" class="btn  btn-primary btn-block" type="submit"  value="退　　出" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="manage_content_right">
+    <div class="panel panel-primary col-lg-10" style="margin-top:1em;min-height: 560px;">
+        <div ng-controller="newsNotesCtrl" ng-hide="newsNotesHide">
+            <div ng-include="'business/modules/newsNotes/newsNotes.html'"></div>
+        </div>
+        <div ng-controller="dataViewCtrl" ng-hide="dataViewHide">
+            <div ng-include="'business/modules/manage/studentView/fragments/dataView/dataView.html'"></div>
+        </div>
+    </div>
+</div>

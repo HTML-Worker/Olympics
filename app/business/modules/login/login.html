@@ -2,17 +2,17 @@
     <div class="panel panel-primary col-lg-3" style="margin-top:1em;" >
         <div id="myTabContent" class="tab-content">
             <div class="panel-body">
-                <form name="LoginG" id="LoginG" method="post"><br />
+                <div id="LoginG"><br />
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">账号</span>
-                            <input name="Username" type="text" class="form-control" placeholder="用户名" />
+                            <input ng-model="username" name="Username" type="text" class="form-control" placeholder="用户名" />
                         </div><br />
                     </div>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-addon">密码</span>
-                            <input name="Password" type="Password" class="form-control" placeholder="密码">
+                            <input ng-model="password" name="Password" type="Password" class="form-control" placeholder="密码">
                         </div>
                     </div>
                     <h5>请将如下计算结果填入文本框内：</h5>
@@ -31,20 +31,17 @@
                         </div>
                     </div><br />
                     <div class="form-group">
-                        <input class="btn  btn-primary btn-block" type="submit"  value="登　　录" />
+                        <input ng-click="loginSubmit()" class="btn  btn-primary btn-block" type="submit"  value="登　　录" />
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>
 </div>
 <div class="login_content_right">
     <div class="panel panel-primary col-lg-9" style="margin-top:1em;min-height: 560px;">
-        <div class="form-group" style="border-bottom: 2px solid #337ab7">
-            <h4>新闻及注意事项</h4>
-        </div>
-        <div class="form-group">
-            这是文章内容
+        <div ng-controller="newsNotesCtrl">
+            <div ng-include="'business/modules/newsNotes/newsNotes.html'"></div>
         </div>
     </div>
 </div>

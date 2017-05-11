@@ -1,0 +1,21 @@
+.manage_content_left {
+  .panel {
+    background: #ebeae8;
+    .tab-content {
+      .panel-body {
+        padding-top: 0;
+      }
+    }
+  }
+}
+.manage_content_right {
+  .panel {
+    .btn_back {
+      input {
+        width: 20%;
+        float: right;
+        margin-top: 2px;
+      }
+    }
+  }
+}

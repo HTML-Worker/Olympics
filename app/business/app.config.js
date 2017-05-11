@@ -2,7 +2,10 @@ var globalUrl = globalUrl.api;
 var configData = {
     getDataUrl: {
         title: globalUrl + "UserInfoService/title/",
-        document: globalUrl + "UserInfoService/document/"
+        document: globalUrl + "UserInfoService/document/",
+        newsNotes:  globalUrl + "UserInfoService/newsNotes/",
+        loginIned: globalUrl + "LandMessage/loginIned",
+        studentLoginMessage: globalUrl + "StudentMessage/studentMessage/"
     },
     nav: [
         {
@@ -185,6 +188,15 @@ var configData = {
             route: {
                 templateUrl: "./business/modules/loginInit/loginInit.html",
                 controller: "loginInitCtrl",
+                controllerAs: "vm"
+            }
+        },
+        {
+            name:"学生管理页面",
+            url: "/manage/studentView",
+            route: {
+                templateUrl: "./business/modules/manage/studentView/studentView.html",
+                controller: "studentViewCtrl",
                 controllerAs: "vm"
             }
         }
