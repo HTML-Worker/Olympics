@@ -1,0 +1,107 @@
+<div class="form-group col-lg-12" style="margin-top:1em;padding: 0;">
+    <div class="col-lg-6">
+        <h4>欢迎您，{{loginIned.username}}</h4>
+    </div>
+    <div class="col-lg-6 btn_back">
+        <input ng-click="loginBack()" class="btn  btn-primary btn-block" type="button"  value="返　　回" />
+    </div>
+</div>
+<div class="panel panel-primary col-lg-12">
+    <div class="row">
+        <div class="panel-body">
+            <div class="form-inline">
+                <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="按姓名搜索" id="searchName" name="searchName" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" id="searchButton" ng-click="change()">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <label for="gradeSearch">年级</label>
+                        <select class="form-control" ng-change="change()" ng-model="gradeSearch" id="gradeSearch">
+                            <option>全部</option>
+                            <option>高三</option>
+                            <option>高二</option>
+                            <option>高一</option>
+                            <option>初三</option>
+                            <option>初二</option>
+                            <option>初一</option>
+                        </select>
+                    </div>
+                <div class="form-group" style="float: right">
+                    <div class="btn-group">
+                            <button type="button" class="btn btn-success" id="exportButton"  title="按照当前搜索条件导出列表" name="exportButton" onclick="exportList();">导出列表</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="panel panel-primary col-lg-12">
+    <div class="row">
+        <div class="panel-body">
+            <div class="form-inline">
+                <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                    <label for="linageSelect">行数</label>
+                    <select class="form-control" id="linageSelect" ng-model="pageSize" ng-change="change()">
+                        <option>2</option>
+                        <option>3</option>
+                        <option>4</option>
+                        <option>5</option>
+                    </select>
+                </div>
+                <div class="form-group ">
+                    <strong class="text-info">总计：{{count}}条记录</strong>
+                </div>
+                <div class="form-group" style="float: right">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-warning" id="resetPasswordButton" title="重置选手密码">重置密码</button>
+                        <button type="button" class="btn btn-warning" id="deleteButton" title="删除选手账户">删除选手</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-body">
+            <div class="table-responsive">
+                <table id="studentList" class="table table-striped list">
+                    <thead>
+                    <tr>
+                        <th>序号</th>
+                        <th class="sortable" >姓名</th>
+                        <th class="sortable" >性别</th>
+                        <th class="sortable">证件号</th>
+                        <th class="sortable">年级</th>
+                        <th class="sortable">手机号</th>
+                        <th class="sortable">电子邮件</th>
+                        <th class="sortable">登录名</th>
+                        <th class="choose-th">选择</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="item in allStudentMessage">
+                        <th style="font-weight: 400">{{$index + 1}}</th>
+                        <th style="font-weight: 400">{{item.name}}</th>
+                        <th style="font-weight: 400">{{item.sex}}</th>
+                        <th style="font-weight: 400">{{item.peopleId}}</th>
+                        <th style="font-weight: 400">{{item.grade}}</th>
+                        <th style="font-weight: 400">{{item.phone}}</th>
+                        <th style="font-weight: 400">{{item.email}}</th>
+                        <th style="font-weight: 400">{{item.teacherName}}</th>
+                        <th style="font-weight: 400">
+                            <input type="checkbox" />
+                        </th>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel-body col-lg-12">
+            <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+            <div ng-include="'business/modules/manage/pagination.html'"></div>
+        </div>
+    </div>
+</div>

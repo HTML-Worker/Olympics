@@ -1,17 +1,9 @@
-<nav class="index_nav">
-    <ul class="nav_floor floor1">
-        <li ng-repeat="item in navData">
-            <a href="#{{item.url}}" ng-bind="item.name"></a>
-            <ul class="nav_floor floor2">
-                <li ng-repeat="item in item.list">
-                    <a href="#{{item.url}}" ng-bind="item.name"></a>
-                    <ul class="nav_floor floor3">
-                        <li ng-repeat="item in item.list">
-                            <a href="#{{item.url}}" ng-bind="item.name"></a>
-                        </li>
-                    </ul>
-                </li>
-            </ul>
-        </li>
-    </ul>
-</nav>
+<ul class="pagination">
+    <li><a href="#">&laquo;</a></li>
+    <li><a href="#">1</a></li>
+    <li><a href="#">2</a></li>
+    <li><a href="#">3</a></li>
+    <li><a href="#">4</a></li>
+    <li><a href="#">5</a></li>
+    <li><a href="#">&raquo;</a></li>
+</ul>
