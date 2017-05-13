@@ -83,7 +83,7 @@
                     </thead>
                     <tbody>
                         <tr ng-repeat="item in allStudentMessage">
-                        <th style="font-weight: 400">{{$index + 1}}</th>
+                        <th style="font-weight: 400">{{$index + 1 + (selPage - 1) * pageSize}}</th>
                         <th style="font-weight: 400">{{item.name}}</th>
                         <th style="font-weight: 400">{{item.sex}}</th>
                         <th style="font-weight: 400">{{item.peopleId}}</th>
