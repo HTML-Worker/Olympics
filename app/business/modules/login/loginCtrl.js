@@ -13,6 +13,9 @@
         $scope.username = "";
         $scope.password = "";
 
+        /**
+         * 登陆操作
+         */
         $scope.loginSubmit = function () {
             if ("" === $scope.username || "" === $scope.password) {
                 bootbox.alert("账号或密码不可为空！");
@@ -49,6 +52,10 @@
             }
         };
 
+        /**
+         * 录入登陆信息
+         * @param data
+         */
         function pushLoginData(data) {
             $http({
                 method: "post",
