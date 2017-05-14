@@ -59,8 +59,8 @@
                 </div>
                 <div class="form-group" style="float: right">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-warning" id="resetPasswordButton" title="重置选手密码">重置密码</button>
-                        <button type="button" class="btn btn-warning" id="deleteButton" title="删除选手账户">删除选手</button>
+                        <button type="button" class="btn btn-warning" ng-click="resetPasswordButton()" title="重置选手密码">重置密码</button>
+                        <button type="button" class="btn btn-warning" ng-click="deleteButton()" title="删除选手账户">删除选手</button>
                     </div>
                 </div>
             </div>
@@ -81,19 +81,19 @@
                         <th class="choose-th">选择</th>
                     </tr>
                     </thead>
-                    <tbody>
-                        <tr ng-repeat="item in allStudentMessage">
-                        <th style="font-weight: 400">{{$index + 1 + (selPage - 1) * pageSize}}</th>
-                        <th style="font-weight: 400">{{item.name}}</th>
-                        <th style="font-weight: 400">{{item.sex}}</th>
-                        <th style="font-weight: 400">{{item.peopleId}}</th>
-                        <th style="font-weight: 400">{{item.grade}}</th>
-                        <th style="font-weight: 400">{{item.phone}}</th>
-                        <th style="font-weight: 400">{{item.email}}</th>
-                        <th style="font-weight: 400">{{item.username}}</th>
-                        <th style="font-weight: 400">
-                            <input type="checkbox" />
-                        </th>
+                    <tbody ng-repeat="item in allStudentMessage" id="formData">
+                        <tr >
+                        <td style="font-weight: 400">{{$index + 1 + (selPage - 1) * pageSize}}</td>
+                        <td style="font-weight: 400">{{item.name}}</td>
+                        <td style="font-weight: 400">{{item.sex}}</td>
+                        <td style="font-weight: 400">{{item.peopleId}}</td>
+                        <td style="font-weight: 400">{{item.grade}}</td>
+                        <td style="font-weight: 400">{{item.phone}}</td>
+                        <td style="font-weight: 400">{{item.email}}</td>
+                        <td style="font-weight: 400">{{item.username}}</td>
+                        <td style="font-weight: 400">
+                            <input type="checkbox" class="checkbox" name="itemes" id="{{item.id}}" ng-click="checkbox(item.id)"/>
+                        </td>
                     </tr>
                     </tbody>
                 </table>

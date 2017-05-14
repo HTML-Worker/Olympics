@@ -17,8 +17,7 @@
         $scope.newPages = $scope.pages > 5 ? 5 : $scope.pages;
         $scope.pageList = [];
         $scope.selPage = 1;
-        $scope.teacherData = [];
-
+        $scope.checkboxs = [];
 
         /**
          * 获取正在登陆的用户信息
@@ -179,7 +178,7 @@
             $scope.selPage = page;
             $scope.setData();
             $scope.isActivePage(page);
-            console.log("选择的页：" + page);
+            //console.log("选择的页：" + page);
         };
         //设置当前选中页样式
         $scope.isActivePage = function (page) {
@@ -202,6 +201,41 @@
          */
         $scope.loginBack = function () {
             window.location.reload();
+        };
+
+        /**
+         * 复选框选中样式修改
+         * @param btn
+         */
+        $scope.checkbox = function (btn) {
+            if ($("#" + btn)[0].checked) {
+                $("#" + btn).parent().prevAll().andSelf().css("background-color", "#dff0d8");
+            }else {
+                $("#" + btn).parent().prevAll().andSelf().css("background-color", "#f9f9f9");
+            }
+            $scope.checkboxs.push(btn);
+        };
+
+        $scope.resetPasswordButton = function () {
+            console.log($scope.checkboxs);
+            $http({
+                method: "post",
+                url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/studentPasswordChange",
+                data: {
+                    studentNum: $scope.checkboxs,
+                    username: ""
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).success(function (data) {
+                if (data == "success") {
+                    $scope.checkboxs = [];
+                    bootbox.alert("密码已重置为:123456!");
+                }
+            }).error(function (data) {
+                bootbox.alert("服务器连接失败！");
+            });
         };
     }
 }());
