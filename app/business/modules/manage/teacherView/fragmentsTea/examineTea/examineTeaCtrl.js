@@ -12,7 +12,7 @@
     function examineTeaCtrl($scope, $location, $http) {
         $scope.gradeSearch = "全部";
         $scope.count = 10;
-        $scope.pageSize = 2;
+        $scope.pageSize = 4;
         $scope.pages = Math.ceil( 20 / $scope.pageSize); //分页数
         $scope.newPages = $scope.pages > 5 ? 5 : $scope.pages;
         $scope.pageList = [];
@@ -44,9 +44,9 @@
                     method: "post",
                     url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
                     data: {
-                        teacher: $scope.teacherData.name,
+                        teacher:$scope.teacherData.name,
+                        examine: $("#examineGradeSearch").val(),
                         name: "",
-                        grade: $scope.gradeSearch,
                         start: 0,
                         end: 0
                     },
@@ -93,8 +93,8 @@
                         url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
                         data: {
                             teacher:$scope.teacherData.name,
+                            examine: $("#examineGradeSearch").val(),
                             name: $("#examineSearchName").val(),
-                            grade: $("#examineGradeSearch").val(),
                             start: 0,
                             end: $("#examineLinageSelect").val()
                         },
@@ -139,7 +139,7 @@
                         data: {
                             teacher: $scope.teacherData.name,
                             name: $("#examineSearchName").val(),
-                            grade: $("#examineGradeSearch").val(),
+                            examine: $("#examineGradeSearch").val(),
                             start: $("#examineLinageSelect").val() * ($scope.selPage - 1),
                             end: $("#examineLinageSelect").val()
                         },
@@ -217,7 +217,7 @@
         };
 
         /**
-         * 重置密码
+         * 审核同意
          */
         $scope.resetPasswordButton = function () {
             if (0 === $scope.checkboxs.length) {
@@ -228,7 +228,8 @@
                     url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/studentPasswordChange",
                     data: {
                         studentNum: $scope.checkboxs,
-                        username: ""
+                        username: "",
+                        examine: "true"
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -236,7 +237,7 @@
                 }).success(function (data) {
                     if (data == "success") {
                         $scope.checkboxs = [];
-                        bootbox.alert("密码已重置为:123456!");
+                        bootbox.alert("审核已通过，请刷新后查看！");
                     }
                 }).error(function (data) {
                     bootbox.alert("服务器连接失败！");
@@ -245,7 +246,7 @@
         };
 
         /**
-         * 删除选手
+         * 审核拒绝
          */
         $scope.deleteButton = function () {
             if (0 === $scope.checkboxs.length) {
@@ -253,9 +254,11 @@
             } else {
                 $http({
                     method: "post",
-                    url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/deleteStudentMessage",
+                    url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/studentPasswordChange",
                     data: {
-                        studentNum: $scope.checkboxs
+                        studentNum: $scope.checkboxs,
+                        username: "",
+                        examine: "false"
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
@@ -263,7 +266,7 @@
                 }).success(function (data) {
                     if (data == "success") {
                         $scope.checkboxs = [];
-                        bootbox.alert("选手已删除，请刷新！");
+                        bootbox.alert("已拒绝，请刷新后查看！");
                     }
                 }).error(function (data) {
                     bootbox.alert("服务器连接失败！");

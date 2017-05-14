@@ -12,7 +12,7 @@
     function managementTeaCtrl($scope, $location, $http) {
         $scope.gradeSearch = "全部";
         $scope.count = 10;
-        $scope.pageSize = 2;
+        $scope.pageSize = 4;
         $scope.pages = Math.ceil( 20 / $scope.pageSize); //分页数
         $scope.newPages = $scope.pages > 5 ? 5 : $scope.pages;
         $scope.pageList = [];
