@@ -216,8 +216,11 @@
             $scope.checkboxs.push(btn);
         };
 
+        /**
+         * 重置密码
+         */
         $scope.resetPasswordButton = function () {
-            console.log($scope.checkboxs);
+            //console.log($scope.checkboxs);
             $http({
                 method: "post",
                 url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/studentPasswordChange",
@@ -232,6 +235,30 @@
                 if (data == "success") {
                     $scope.checkboxs = [];
                     bootbox.alert("密码已重置为:123456!");
+                }
+            }).error(function (data) {
+                bootbox.alert("服务器连接失败！");
+            });
+        };
+
+        /**
+         * 删除选手
+         */
+        $scope.deleteButton = function () {
+            //console.log($scope.checkboxs);
+            $http({
+                method: "post",
+                url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/deleteStudentMessage",
+                data: {
+                    studentNum: $scope.checkboxs
+                },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                }
+            }).success(function (data) {
+                if (data == "success") {
+                    $scope.checkboxs = [];
+                    bootbox.alert("选手已删除，请刷新！");
                 }
             }).error(function (data) {
                 bootbox.alert("服务器连接失败！");
