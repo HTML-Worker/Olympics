@@ -9,7 +9,7 @@
                     <input ng-click="managementShow()" class="btn  btn-primary btn-block" type="submit"  value="选手管理" />
                 </div>
                 <div class="form-group">
-                    <input class="btn  btn-primary btn-block" type="submit"  value="选手审核" />
+                    <input ng-click="examineShow()" class="btn  btn-primary btn-block" type="submit"  value="选手审核" />
                 </div>
                 <div class="form-group">
                     <input class="btn  btn-primary btn-block" type="submit"  value="竞赛管理" />
@@ -32,6 +32,9 @@
         </div>
         <div ng-controller="managementTeaCtrl" ng-hide="managementViewHide">
             <div ng-include="'business/modules/manage/teacherView/fragmentsTea/managementTea/managementTea.html'"></div>
+        </div>
+        <div ng-controller="examineTeaCtrl" ng-hide="examineViewHide">
+            <div ng-include="'business/modules/manage/teacherView/fragmentsTea/examineTea/examineTea.html'"></div>
         </div>
     </div>
 </div>

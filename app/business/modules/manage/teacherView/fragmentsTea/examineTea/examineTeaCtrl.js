@@ -1,15 +1,15 @@
 (function () {
     angular
         .module("app")
-        .controller("managementTeaCtrl", managementTeaCtrl);
+        .controller("examineTeaCtrl",examineTeaCtrl);
 
-    managementTeaCtrl.$inject = [
+    examineTeaCtrl.$inject = [
         "$scope",
         "$location",
         "$http"
     ];
 
-    function managementTeaCtrl($scope, $location, $http) {
+    function examineTeaCtrl($scope, $location, $http) {
         $scope.gradeSearch = "全部";
         $scope.count = 10;
         $scope.pageSize = 2;
@@ -54,8 +54,8 @@
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).success(function (data) {
-                    $scope.count = data.length;
-                    $scope.allStudentMessage = data.slice(0, $scope.pageSize);
+                    $scope.count = examineChange(data).length;
+                    $scope.allStudentMessage = examineChange(data).slice(0, $scope.pageSize);
                 }).error(function (data) {
                     bootbox.alert("服务器连接失败！");
                 });
@@ -93,16 +93,16 @@
                         url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
                         data: {
                             teacher:$scope.teacherData.name,
-                            name: $("#searchName").val(),
-                            grade: $("#gradeSearch").val(),
+                            name: $("#examineSearchName").val(),
+                            grade: $("#examineGradeSearch").val(),
                             start: 0,
-                            end: $("#linageSelect").val()
+                            end: $("#examineLinageSelect").val()
                         },
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     }).success(function (data) {
-                        $scope.allStudentMessage = data;
+                        $scope.allStudentMessage = examineChange(data);
                     }).error(function (data) {
                         bootbox.alert("服务器连接失败！");
                     });
@@ -138,16 +138,16 @@
                         url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
                         data: {
                             teacher: $scope.teacherData.name,
-                            name: $("#searchName").val(),
-                            grade: $("#gradeSearch").val(),
-                            start: $("#linageSelect").val() * ($scope.selPage - 1),
-                            end: $("#linageSelect").val()
+                            name: $("#examineSearchName").val(),
+                            grade: $("#examineGradeSearch").val(),
+                            start: $("#examineLinageSelect").val() * ($scope.selPage - 1),
+                            end: $("#examineLinageSelect").val()
                         },
                         headers: {
                             'Content-Type': 'application/x-www-form-urlencoded'
                         }
                     }).success(function (data) {
-                        $scope.allStudentMessage = data;
+                        $scope.allStudentMessage = examineChange(data);
                         if(data.length === 0) {
                             bootbox.alert("数据不足！")
                         }
@@ -208,10 +208,10 @@
          * @param btn
          */
         $scope.checkbox = function (btn) {
-            if ($("#" + btn)[0].checked) {
-                $("#" + btn).parent().prevAll().andSelf().css("background-color", "#dff0d8");
+            if ($("#examine" + btn)[0].checked) {
+                $("#examine" + btn).parent().prevAll().andSelf().css("background-color", "#dff0d8");
             }else {
-                $("#" + btn).parent().prevAll().andSelf().css("background-color", "#f9f9f9");
+                $("#examine" + btn).parent().prevAll().andSelf().css("background-color", "#f9f9f9");
             }
             $scope.checkboxs.push(btn);
         };
@@ -270,5 +270,24 @@
                 });
             }
         };
+    }
+
+    /**
+     * 审核状态转换
+     * @param data
+     * @returns {*}
+     */
+    function examineChange(data) {
+        var examineData = data;
+        for (var item in examineData) {
+            if ( "0" === examineData[item].examine) {
+                examineData[item].examine = "未审核";
+            }else if ( "1" === examineData[item].examine) {
+                examineData[item].examine = "审核通过";
+            }else if ( "2" === examineData[item].examine) {
+                examineData[item].examine = "已拒绝";
+            }
+        }
+        return examineData;
     }
 }());
