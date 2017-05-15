@@ -151,6 +151,9 @@
                         else if ("teacher" === data[0].message) {
                             location.hash = "/manage/teacherView";
                         }
+                        else if ("admin" === data[0].message) {
+                            location.hash = "/manage/adminView";
+                        }
                     }
                 }).error(function (data) {
                     bootbox.alert("服务器连接失败！");
