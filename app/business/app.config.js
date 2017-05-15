@@ -8,7 +8,9 @@ var configData = {
         studentLoginMessage: globalUrl + "StudentMessage/studentMessage/",
         teacherLoginMessage: globalUrl + "TeacherMessage/teacherMessage/",
         adminMessage: globalUrl + "AdminMessage/adminMessage/",
-        adminPEChange: globalUrl + "AdminMessage/adminPEChange"
+        adminPEChange: globalUrl + "AdminMessage/adminPEChange",
+        allTeacherMessage: globalUrl + "TeacherMessage/allTeacherMessage",
+        teacherExamine: globalUrl + "TeacherMessage/teacherExamine"
     },
     nav: [
         {

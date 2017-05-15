@@ -27,7 +27,6 @@
             url: configData.getDataUrl.loginIned,
             headers: {
                 'Content-Type': 'application/x-www-form-urlencoded'
-                //'Content-Type': 'text/plain'
             }
         }).success(function (data) {
             $scope.loginIned = data[0];
@@ -39,23 +38,16 @@
                     //'Content-Type': 'text/plain'
                 }
             }).success(function (data) {
-                $scope.teacherData = data[0];
+                $scope.adminData = data[0];
                 $http({
-                    method: "post",
-                    url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
-                    data: {
-                        teacher:$scope.teacherData.name,
-                        examine: $("#examineGradeSearch").val(),
-                        name: "",
-                        start: 0,
-                        end: 0
-                    },
+                    method: "get",
+                    url: configData.getDataUrl.allTeacherMessage,
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).success(function (data) {
                     $scope.count = examineChange(data).length;
-                    $scope.allStudentMessage = examineChange(data).slice(0, $scope.pageSize);
+                    $scope.allTeacherMessage = examineChange(data).slice(0, $scope.pageSize);
                 }).error(function (data) {
                     bootbox.alert("服务器连接失败！");
                 });
@@ -71,96 +63,47 @@
          */
         $scope.change = function(){
             $http({
-                method: "get",
-                url: configData.getDataUrl.loginIned,
+                method: "post",
+                url: "http://localhost:8080/OlympicsAPI/rest/TeacherMessage/getTeacherMessageRule",
+                data: {
+                    examine: $("#examineGradeSearch").val(),
+                    name: $("#examineSearchName").val(),
+                    start: 0,
+                    end: $("#examineLinageSelect").val()
+                },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
-                    //'Content-Type': 'text/plain'
                 }
             }).success(function (data) {
-                $scope.loginIned = data[0];
-                $http({
-                    method: "get",
-                    url: configData.getDataUrl.teacherLoginMessage + $scope.loginIned.username,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                        //'Content-Type': 'text/plain'
-                    }
-                }).success(function (data) {
-                    $scope.teacherData = data[0];
-                    $http({
-                        method: "post",
-                        url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
-                        data: {
-                            teacher:$scope.teacherData.name,
-                            examine: $("#examineGradeSearch").val(),
-                            name: $("#examineSearchName").val(),
-                            start: 0,
-                            end: $("#examineLinageSelect").val()
-                        },
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-                    }).success(function (data) {
-                        $scope.allStudentMessage = examineChange(data);
-                    }).error(function (data) {
-                        bootbox.alert("服务器连接失败！");
-                    });
-                }).error(function (data) {
-                    alert("获取数据失败！");
-                });
+                $scope.allTeacherMessage = examineChange(data);
             }).error(function (data) {
-                alert("获取数据失败！");
+                bootbox.alert("服务器连接失败！");
             });
         };
         //页码分页查询
         $scope.setData = function () {
             $http({
-                method: "get",
-                url: configData.getDataUrl.loginIned,
+                method: "post",
+                url: "http://localhost:8080/OlympicsAPI/rest/TeacherMessage/getTeacherMessageRule",
+                data: {
+                    name: $("#examineSearchName").val(),
+                    examine: $("#examineGradeSearch").val(),
+                    start: $("#examineLinageSelect").val() * ($scope.selPage - 1),
+                    end: $("#examineLinageSelect").val()
+                },
                 headers: {
                     'Content-Type': 'application/x-www-form-urlencoded'
-                    //'Content-Type': 'text/plain'
                 }
             }).success(function (data) {
-                $scope.loginIned = data[0];
-                $http({
-                    method: "get",
-                    url: configData.getDataUrl.teacherLoginMessage + $scope.loginIned.username,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                        //'Content-Type': 'text/plain'
-                    }
-                }).success(function (data) {
-                    $scope.teacherData = data[0];
-                    $http({
-                        method: "post",
-                        url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
-                        data: {
-                            teacher: $scope.teacherData.name,
-                            name: $("#examineSearchName").val(),
-                            examine: $("#examineGradeSearch").val(),
-                            start: $("#examineLinageSelect").val() * ($scope.selPage - 1),
-                            end: $("#examineLinageSelect").val()
-                        },
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-                    }).success(function (data) {
-                        $scope.allStudentMessage = examineChange(data);
-                        if(data.length === 0) {
-                            bootbox.alert("数据不足！")
-                        }
-                    }).error(function (data) {
-                        bootbox.alert("服务器连接失败！");
-                    });
-                }).error(function (data) {
-                    alert("获取数据失败！");
-                });
+                if(data.length === 0) {
+                    $scope.allTeacherMessage = [];
+                    bootbox.alert("数据不足！");
+                }else {
+                    $scope.allTeacherMessage = examineChange(data);
+                }
             }).error(function (data) {
-                alert("获取数据失败！");
+                bootbox.alert("服务器连接失败！");
             });
-            //$scope.items = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
         };
         //打印当前选中页索引
         $scope.selectPage = function (page) {
@@ -225,17 +168,16 @@
             } else {
                 $http({
                     method: "post",
-                    url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/studentPasswordChange",
+                    url: configData.getDataUrl.teacherExamine,
                     data: {
-                        studentNum: $scope.checkboxs,
-                        username: "",
+                        teacherNum: $scope.checkboxs,
                         examine: "true"
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).success(function (data) {
-                    if (data == "success") {
+                    if (data === "success") {
                         $scope.checkboxs = [];
                         bootbox.alert("审核已通过，请刷新后查看！");
                     }
@@ -254,17 +196,16 @@
             } else {
                 $http({
                     method: "post",
-                    url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/studentPasswordChange",
+                    url: configData.getDataUrl.teacherExamine,
                     data: {
-                        studentNum: $scope.checkboxs,
-                        username: "",
+                        teacherNum: $scope.checkboxs,
                         examine: "false"
                     },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
                     }
                 }).success(function (data) {
-                    if (data == "success") {
+                    if (data === "success") {
                         $scope.checkboxs = [];
                         bootbox.alert("已拒绝，请刷新后查看！");
                     }

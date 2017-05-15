@@ -51,8 +51,8 @@
                 </div>
                 <div class="form-group" style="float: right">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-success" ng-click="resetPasswordButton()" title="重置选手密码">同意</button>
-                        <button type="button" class="btn btn-warning" ng-click="deleteButton()" title="删除选手账户">拒绝</button>
+                        <button type="button" class="btn btn-success" ng-click="resetPasswordButton()" title="审核通过">同意</button>
+                        <button type="button" class="btn btn-warning" ng-click="deleteButton()" title="审核不通过">拒绝</button>
                     </div>
                 </div>
             </div>
@@ -66,7 +66,7 @@
                         <th class="sortable" >姓名</th>
                         <th class="sortable" >性别</th>
                         <th class="sortable">证件号</th>
-                        <th class="sortable">年级</th>
+                        <th class="sortable">学校</th>
                         <th class="sortable">手机号</th>
                         <th class="sortable">电子邮件</th>
                         <th class="sortable">登录名</th>
@@ -74,13 +74,13 @@
                         <th class="choose-th">选择</th>
                     </tr>
                     </thead>
-                    <tbody ng-repeat="item in allStudentMessage" id="examineFormData">
+                    <tbody ng-repeat="item in allTeacherMessage" id="examineFormData">
                     <tr >
                         <td style="font-weight: 400">{{$index + 1 + (selPage - 1) * pageSize}}</td>
                         <td style="font-weight: 400">{{item.name}}</td>
                         <td style="font-weight: 400">{{item.sex}}</td>
                         <td style="font-weight: 400">{{item.peopleId}}</td>
-                        <td style="font-weight: 400">{{item.grade}}</td>
+                        <td style="font-weight: 400">{{item.school}}</td>
                         <td style="font-weight: 400">{{item.phone}}</td>
                         <td style="font-weight: 400">{{item.email}}</td>
                         <td style="font-weight: 400">{{item.username}}</td>
