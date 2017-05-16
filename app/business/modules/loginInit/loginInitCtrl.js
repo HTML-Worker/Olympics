@@ -25,6 +25,9 @@
         $scope.language = selectData.language;
         $scope.entryType = selectData.entryType;
 
+        /**
+         * 学生注册信息提交
+         */
         $scope.studentSubmit = function () {
             $http({
                 method: "post",
@@ -58,6 +61,9 @@
             });
         };
 
+        /**
+         * 教师注册信息提交
+         */
         $scope.teacherSubmit = function () {
             $http({
                 method: "post",
@@ -88,6 +94,7 @@
                 bootbox.alert("服务器连接失败！");
             });
         };
+
         /**
          * 返回按钮绑定事件
          */
@@ -107,12 +114,18 @@
             }
         };
 
+        /**
+         * 教师注册显示控制
+         */
         $scope.teacherRegister = function () {
             $scope.titleName = "教师注册";
             $scope.loginInitChoice = true;
             $scope.teacherRegisterView = false;
         };
-        
+
+        /**
+         * 学生注册显示控制
+         */
         $scope.studentRegister = function () {
             $scope.titleName = "学生注册";
             $scope.loginInitChoice = true;
@@ -125,6 +138,8 @@
         $scope.loginSubmit = function () {
             if ("" === $scope.username || "" === $scope.password) {
                 bootbox.alert("账号或密码不可为空！");
+            } else if ("" === $("#captcha").val()) {
+                bootbox.alert("请输入验证码！");
             } else {
                 $http({
                     method: "post",
@@ -141,8 +156,11 @@
                         bootbox.alert("账号或密码错误！");
                         $scope.username = "";
                         $scope.password = "";
-                    }
-                    else {
+                    }else if ("0" === data[0].examine) {
+                        bootbox.alert("账号审核中，请耐心等待！");
+                    }else if ("2" === data[0].examine) {
+                        bootbox.alert("账号审核不通过！");
+                    } else {
                         pushLoginData(data[0]);
                         bootbox.alert("登录成功！");
                         if ("student" === data[0].message ) {
@@ -159,6 +177,13 @@
                     bootbox.alert("服务器连接失败！");
                 });
             }
+        };
+
+        /**
+         * 忘记密码重置提示框
+         */
+        $scope.forget = function () {
+            bootbox.alert("进行密码重置：<br>学生请联系指导老师!教师请联系特派员！");
         };
 
         /**

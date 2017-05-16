@@ -19,7 +19,9 @@
         $scope.loginSubmit = function () {
             if ("" === $scope.username || "" === $scope.password) {
                 bootbox.alert("账号或密码不可为空！");
-            } else {
+            } else if ("" === $("#captcha").val()) {
+                bootbox.alert("请输入验证码！");
+            }else{
                 $http({
                     method: "post",
                     url: "http://localhost:8080/OlympicsAPI/rest/LandMessage/land",
@@ -36,7 +38,11 @@
                         $scope.username = "";
                         $scope.password = "";
                     }
-                    else {
+                    else if ("0" === data[0].examine) {
+                        bootbox.alert("账号审核中，请耐心等待！");
+                    }else if ("2" === data[0].examine) {
+                        bootbox.alert("账号审核不通过！");
+                    }else {
                         pushLoginData(data[0]);
                         bootbox.alert("登录成功！");
                         if ("student" === data[0].message ) {
@@ -53,6 +59,10 @@
                     bootbox.alert("服务器连接失败！");
                 });
             }
+        };
+
+        $scope.forget = function () {
+          bootbox.alert("进行密码重置：<br>学生请联系指导老师!教师请联系特派员！");
         };
 
         /**

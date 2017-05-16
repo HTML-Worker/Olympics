@@ -6,7 +6,7 @@
     titleListsCtrl.$inject = [
         "$scope",
         "$location",
-        "$http",
+        "$http"
     ];
 
     /**
