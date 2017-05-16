@@ -50,6 +50,7 @@
       position: absolute;
       display: none;
       margin-left: -1px;
+      z-index: 1;
       li {
         width: 143.8px;
         &:first-child {
@@ -63,6 +64,7 @@
       .floor3 {
         position: absolute;
         margin-left: 70px;
+        z-index: 1;
         li {
           &:first-child {
             border-top: 1px solid #666;

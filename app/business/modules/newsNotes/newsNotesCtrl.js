@@ -11,7 +11,7 @@
     ];
 
     /**
-     * 首页模块控制器
+     * 新闻及事件模块
      */
     function newsNotesCtrl($scope, $location, $http, $sce) {
         $scope.content = "新闻及事件";

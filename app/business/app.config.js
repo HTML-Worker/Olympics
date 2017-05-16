@@ -41,7 +41,7 @@ var configData = {
                 {
                     name: "条例条规",
                     parent: "",
-                    url: "/titleLists",
+                    url: "/titleLists/rules",
                     route: {
                         templateUrl: "./business/modules/titleLists/titleLists.html",
                         controller: "titleListsCtrl",
@@ -63,16 +63,44 @@ var configData = {
             name: "新闻",
             list: [
                 {
-                    name: "动态"
+                    name: "动态",
+                    parent: "",
+                    url: "/titleLists/dynamic",
+                    route: {
+                        templateUrl: "./business/modules/titleLists/titleLists.html",
+                        controller: "titleListsCtrl",
+                        controllerAs: "vm"
+                    }
                 },
                 {
-                    name: "学生活动"
+                    name: "学生活动",
+                    parent: "",
+                    url: "/titleLists/student_activity",
+                    route: {
+                        templateUrl: "./business/modules/titleLists/titleLists.html",
+                        controller: "titleListsCtrl",
+                        controllerAs: "vm"
+                    }
                 },
                 {
-                    name: "获奖名单"
+                    name: "获奖名单",
+                    parent: "",
+                    url: "/titleLists/winners",
+                    route: {
+                        templateUrl: "./business/modules/titleLists/titleLists.html",
+                        controller: "titleListsCtrl",
+                        controllerAs: "vm"
+                    }
                 },
                 {
-                    name: "交流与分享"
+                    name: "交流与分享",
+                    parent: "",
+                    url: "/titleLists/talk_and_sharing",
+                    route: {
+                        templateUrl: "./business/modules/titleLists/titleLists.html",
+                        controller: "titleListsCtrl",
+                        controllerAs: "vm"
+                    }
                 }
             ]
         },
@@ -105,7 +133,14 @@ var configData = {
             ]
         },
         {
-            name: "教师培训"
+            name: "教师培训",
+            parent: "",
+            url: "/titleLists/teacher_training",
+            route: {
+                templateUrl: "./business/modules/titleLists/titleLists.html",
+                controller: "titleListsCtrl",
+                controllerAs: "vm"
+            }
         },
         {
             name: "在线题库"

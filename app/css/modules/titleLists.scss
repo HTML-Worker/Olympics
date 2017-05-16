@@ -1,0 +1,21 @@
+.title_list_box {
+  h2 {
+    font-weight: 500;
+    padding-left: 15px;
+  }
+  hr {
+    margin-top: 0;
+    border-top:1px solid #cccccc
+  }
+  .form-group {
+    .input-group {
+        input {
+          z-index: 0;
+        }
+      }
+    .panel-body {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+}
