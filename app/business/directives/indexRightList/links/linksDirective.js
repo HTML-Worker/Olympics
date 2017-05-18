@@ -24,5 +24,10 @@
 
     function linksCtrl($location, $scope) {
         $scope.linksData = configData.indexContentRight[2];
+        $scope.urlRedirect = function (data) {
+            if (data.redirect === true) {
+                location.href = data.url;
+            }
+        }
     }
 }());

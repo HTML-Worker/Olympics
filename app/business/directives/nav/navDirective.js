@@ -24,5 +24,10 @@
 
     function navCtrl($location, $scope) {
         $scope.navData = configData.nav;
+        // $scope.urlRedirect = function (data) {
+        //     if (data.redirect === true) {
+        //         location.href = data.url;
+        //     }
+        // }
     }
 }());

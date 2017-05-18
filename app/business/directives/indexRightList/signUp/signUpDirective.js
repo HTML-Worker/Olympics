@@ -25,5 +25,10 @@
 
     function signUpCtrl($location, $scope, $http) {
         $scope.signUpData = configData.indexContentRight[0];
+        $scope.urlRedirect = function (data) {
+            if (data.redirect === true) {
+                location.href = data.url;
+            }
+        }
     }
 }());

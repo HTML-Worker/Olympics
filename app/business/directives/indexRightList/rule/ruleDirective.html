@@ -2,7 +2,7 @@
     <div class="rule_title" ng-bind="ruleData.title"></div>
     <ul>
         <li ng-repeat="item in ruleData.list">
-            <a href="#" ng-bind="item.name"></a>
+            <a href="#{{item.url}}" ng-bind="item.name"></a>
             <hr>
         </li>
     </ul>

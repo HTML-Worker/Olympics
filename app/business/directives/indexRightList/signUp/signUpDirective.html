@@ -2,7 +2,7 @@
     <div class="sign_up_title" ng-bind="signUpData.title"></div>
     <ul>
         <li ng-repeat="item in signUpData.list">
-            <a href="{{item.url}}" ng-bind="item.name"></a>
+            <a href="{{item.url}}" ng-click="urlRedirect(item)" ng-bind="item.name"></a>
         </li>
     </ul>
 </div>

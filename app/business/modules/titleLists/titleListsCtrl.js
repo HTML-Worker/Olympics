@@ -37,6 +37,25 @@
             bootbox.alert("服务器连接失败！");
         });
 
+        $http({
+            method: "post",
+            url: "http://localhost:8080/OlympicsAPI/rest/UserInfoService/searchTitle",
+            data: {
+                table:$scope.getUrl[2],
+                title: $("#searchTitle").val(),
+                start: $("#linageSelect").val() * ($scope.selPage - 1),
+                end: $("#linageSelect").val(),
+                id:0
+            },
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).success(function (data) {
+            $scope.tableMessage = data[0];
+        }).error(function (data) {
+            bootbox.alert("服务器连接失败！");
+        });
+
         /**
          * 捕获条件修改操作更新数据
          */
