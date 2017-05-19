@@ -10,7 +10,10 @@
     ];
 
     function managementAdmCtrl($scope, $location, $http) {
-        $scope.gradeSearch = "全部";
+        $scope.schoolName = selectData.schoolName;
+        $scope.teacherShow = false;
+        $scope.school = "全部";
+        $scope.identity = "教师";
         $scope.count = 10;
         $scope.pageSize = 4;
         $scope.pages = Math.ceil( 20 / $scope.pageSize); //分页数
@@ -20,7 +23,7 @@
         $scope.checkboxs = [];
 
         /**
-         * 获取正在登陆的用户信息
+         * 获取登陆账号信息
          */
         $http({
             method: "get",
@@ -31,136 +34,76 @@
             }
         }).success(function (data) {
             $scope.loginIned = data[0];
-            $http({
-                method: "get",
-                url: configData.getDataUrl.teacherLoginMessage + $scope.loginIned.username,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                    //'Content-Type': 'text/plain'
-                }
-            }).success(function (data) {
-                $scope.teacherData = data[0];
-                $http({
-                    method: "post",
-                    url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
-                    data: {
-                        teacher: $scope.teacherData.name,
-                        name: "",
-                        grade: $scope.gradeSearch,
-                        start: 0,
-                        end: 0
-                    },
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                }).success(function (data) {
-                    $scope.count = data.length;
-                    $scope.allStudentMessage = data.slice(0, $scope.pageSize);
-                }).error(function (data) {
-                    bootbox.alert("服务器连接失败！");
-                });
-            }).error(function (data) {
-                alert("获取数据失败！");
-            });
         }).error(function (data) {
             alert("获取数据失败！");
         });
 
         /**
-         * 捕获条件修改操作更新数据
+         * 初次获取教师信息
          */
-        $scope.change = function(){
-            $http({
-                method: "get",
-                url: configData.getDataUrl.loginIned,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                    //'Content-Type': 'text/plain'
-                }
-            }).success(function (data) {
-                $scope.loginIned = data[0];
-                $http({
-                    method: "get",
-                    url: configData.getDataUrl.teacherLoginMessage + $scope.loginIned.username,
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                        //'Content-Type': 'text/plain'
-                    }
-                }).success(function (data) {
-                    $scope.teacherData = data[0];
-                    $http({
-                        method: "post",
-                        url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
-                        data: {
-                            teacher:$scope.teacherData.name,
-                            name: $("#searchName").val(),
-                            grade: $("#gradeSearch").val(),
-                            start: 0,
-                            end: $("#linageSelect").val()
-                        },
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-                    }).success(function (data) {
-                        $scope.allStudentMessage = data;
-                    }).error(function (data) {
-                        bootbox.alert("服务器连接失败！");
-                    });
-                }).error(function (data) {
-                    alert("获取数据失败！");
-                });
-            }).error(function (data) {
-                alert("获取数据失败！");
-            });
-        };
+        $http({
+            method: "get",
+            url: configData.getDataUrl.getExamineTeacherMessage,
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded'
+            }
+        }).success(function (data) {
+            $scope.count = data.length;
+            $scope.allTeacherMessage = data.slice(0, $scope.pageSize);
+        }).error(function (data) {
+            bootbox.alert("服务器连接失败！");
+        });
+
         //页码分页查询
         $scope.setData = function () {
-            $http({
-                method: "get",
-                url: configData.getDataUrl.loginIned,
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                    //'Content-Type': 'text/plain'
-                }
-            }).success(function (data) {
-                $scope.loginIned = data[0];
+            if ($scope.identity === "教师") {
                 $http({
-                    method: "get",
-                    url: configData.getDataUrl.teacherLoginMessage + $scope.loginIned.username,
+                    method: "post",
+                    url: "http://localhost:8080/OlympicsAPI/rest/TeacherMessage/getTeacherMessageRule",
+                    data: {
+                        name: $("#teacherSearchName").val(),
+                        school: $("#school").val(),
+                        examine: "审核通过",
+                        start: $("#examineLinageSelect").val() * ($scope.selPage - 1),
+                        end: $("#examineLinageSelect").val()
+                    },
                     headers: {
                         'Content-Type': 'application/x-www-form-urlencoded'
-                        //'Content-Type': 'text/plain'
                     }
                 }).success(function (data) {
-                    $scope.teacherData = data[0];
-                    $http({
-                        method: "post",
-                        url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
-                        data: {
-                            teacher: $scope.teacherData.name,
-                            name: $("#searchName").val(),
-                            grade: $("#gradeSearch").val(),
-                            start: $("#linageSelect").val() * ($scope.selPage - 1),
-                            end: $("#linageSelect").val()
-                        },
-                        headers: {
-                            'Content-Type': 'application/x-www-form-urlencoded'
-                        }
-                    }).success(function (data) {
-                        $scope.allStudentMessage = data;
-                        if(data.length === 0) {
-                            bootbox.alert("数据不足！")
-                        }
-                    }).error(function (data) {
-                        bootbox.alert("服务器连接失败！");
-                    });
+                    $scope.allTeacherMessage = [];
+                    if(data.length === 0) {
+                        bootbox.alert("数据不足！");
+                    }else {
+                        $scope.allTeacherMessage = data;
+                    }
                 }).error(function (data) {
-                    alert("获取数据失败！");
+                    bootbox.alert("服务器连接失败！");
                 });
-            }).error(function (data) {
-                alert("获取数据失败！");
-            });
-            //$scope.items = $scope.data.slice(($scope.pageSize * ($scope.selPage - 1)), ($scope.selPage * $scope.pageSize));//通过当前页数筛选出表格当前显示数据
+            }else {
+                //学生分页查询
+                // $http({
+                //     method: "post",
+                //     url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
+                //     data: {
+                //         teacher: "",
+                //         name: $("#searchName").val(),
+                //         grade: $("#gradeSearch").val(),
+                //         start: $("#linageSelect").val() * ($scope.selPage - 1),
+                //         end: $("#linageSelect").val()
+                //     },
+                //     headers: {
+                //         'Content-Type': 'application/x-www-form-urlencoded'
+                //     }
+                // }).success(function (data) {
+                //     $scope.allStudentMessage = data;
+                //     if(data.length === 0) {
+                //         bootbox.alert("数据不足！")
+                //     }
+                // }).error(function (data) {
+                //     bootbox.alert("服务器连接失败！");
+                // });
+            }
         };
         //打印当前选中页索引
         $scope.selectPage = function (page) {
@@ -196,51 +139,110 @@
         for (var i = 0; i < $scope.newPages; i++) {
             $scope.pageList.push(i + 1);
         }
-        /**
-         * 按钮事件
-         */
-        $scope.loginBack = function () {
-            window.location.reload();
-        };
 
         /**
          * 复选框选中样式修改
          * @param btn
          */
         $scope.checkbox = function (btn) {
-            if ($("#" + btn)[0].checked) {
-                $("#" + btn).parent().prevAll().andSelf().css("background-color", "#dff0d8");
+            if ($("#teacher" + btn)[0].checked) {
+                $("#teacher" + btn).parent().prevAll().andSelf().css("background-color", "#dff0d8");
             }else {
-                $("#" + btn).parent().prevAll().andSelf().css("background-color", "#f9f9f9");
+                $("#teacher" + btn).parent().prevAll().andSelf().css("background-color", "#f9f9f9");
             }
             $scope.checkboxs.push(btn);
+        };
+
+        /**
+         * 身份选择
+         */
+        $scope.identityChange = function () {
+            $scope.teacherShow = !$scope.teacherShow;
+            $scope.studentShow = !$scope.studentShow;
+        };
+
+        /**
+         * 显示条数修改按钮
+         */
+        $scope.changePage = function () {
+            if ($scope.identity === "教师") {
+                $http({
+                    method: "post",
+                    url: "http://localhost:8080/OlympicsAPI/rest/TeacherMessage/getTeacherMessageRule",
+                    data: {
+                        name: $("#examineSearchName").val(),
+                        examine: "审核通过",
+                        start: $("#teacherLinageSelect").val() * ($scope.selPage - 1),
+                        end: $("#teacherLinageSelect").val()
+                    },
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    }
+                }).success(function (data) {
+                    if(data.length === 0) {
+                        $scope.allTeacherMessage = [];
+                        bootbox.alert("数据不足！");
+                    }else {
+                        $scope.allTeacherMessage = data;
+                    }
+                }).error(function (data) {
+                    bootbox.alert("服务器连接失败！");
+                });
+            }else {
+                //学生分页查询
+                // $http({
+                //     method: "post",
+                //     url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/allStudentMessage",
+                //     data: {
+                //         teacher: "",
+                //         name: $("#searchName").val(),
+                //         grade: $("#gradeSearch").val(),
+                //         start: $("#linageSelect").val() * ($scope.selPage - 1),
+                //         end: $("#linageSelect").val()
+                //     },
+                //     headers: {
+                //         'Content-Type': 'application/x-www-form-urlencoded'
+                //     }
+                // }).success(function (data) {
+                //     $scope.allStudentMessage = data;
+                //     if(data.length === 0) {
+                //         bootbox.alert("数据不足！")
+                //     }
+                // }).error(function (data) {
+                //     bootbox.alert("服务器连接失败！");
+                // });
+            }
         };
 
         /**
          * 重置密码
          */
         $scope.resetPasswordButton = function () {
-            if (0 === $scope.checkboxs.length) {
-                bootbox.alert("请选择要操作的对象！");
-            } else {
-                $http({
-                    method: "post",
-                    url: "http://localhost:8080/OlympicsAPI/rest/StudentMessage/studentPasswordChange",
-                    data: {
-                        studentNum: $scope.checkboxs,
-                        username: ""
-                    },
-                    headers: {
-                        'Content-Type': 'application/x-www-form-urlencoded'
-                    }
-                }).success(function (data) {
-                    if (data == "success") {
-                        $scope.checkboxs = [];
-                        bootbox.alert("密码已重置为:123456!");
-                    }
-                }).error(function (data) {
-                    bootbox.alert("服务器连接失败！");
-                });
+            if ($scope.identity === "教师") {
+                if (0 === $scope.checkboxs.length) {
+                    bootbox.alert("请选择要操作的对象！");
+                } else {
+                    $http({
+                        method: "post",
+                        url: "http://localhost:8080/OlympicsAPI/rest/TeacherMessage/teacherPasswordChange",
+                        data: {
+                            studentNum: $scope.checkboxs,
+                            username: ""
+                        },
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    }).success(function (data) {
+                        if (data == "success") {
+                            $scope.checkboxs = [];
+                            bootbox.alert("密码已重置为:123456!");
+                        }
+                    }).error(function (data) {
+                        bootbox.alert("服务器连接失败！");
+                    });
+                }
+            }else {
+
             }
         };
 

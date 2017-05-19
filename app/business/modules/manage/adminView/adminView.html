@@ -6,10 +6,10 @@
                     <input ng-click="dataViewShow()" class="btn  btn-primary btn-block" type="submit"  value="我的资料" />
                 </div>
                 <div class="form-group">
-                    <input ng-click="managementShow()" class="btn  btn-primary btn-block" type="submit"  value="选手管理" />
+                    <input ng-click="managementShow()" class="btn  btn-primary btn-block" type="submit"  value="组织管理" />
                 </div>
                 <div class="form-group">
-                    <input ng-click="examineShow()" class="btn  btn-primary btn-block" type="submit"  value="选手审核" />
+                    <input ng-click="examineShow()" class="btn  btn-primary btn-block" type="submit"  value="教师审核" />
                 </div>
                 <div class="form-group">
                     <input class="btn  btn-primary btn-block" type="submit"  value="竞赛管理" />
@@ -30,9 +30,9 @@
         <div ng-controller="dataAdmViewCtrl" ng-hide="dataViewHide">
             <div ng-include="'business/modules/manage/adminView/fragmentsAdm/dataViewAdm/dataAdmView.html'"></div>
         </div>
-        <!--<div ng-controller="managementAdmCtrl" ng-hide="managementViewHide">-->
-            <!--<div ng-include="'business/modules/manage/adminView/fragmentsAdm/managementAdm/managementAdm.html'"></div>-->
-        <!--</div>-->
+        <div ng-controller="managementAdmCtrl" ng-hide="managementViewHide">
+            <div ng-include="'business/modules/manage/adminView/fragmentsAdm/managementAdm/managementAdm.html'"></div>
+        </div>
         <div ng-controller="examineAdmCtrl" ng-hide="examineViewHide">
             <div ng-include="'business/modules/manage/adminView/fragmentsAdm/examineAdm/examineAdm.html'"></div>
         </div>
