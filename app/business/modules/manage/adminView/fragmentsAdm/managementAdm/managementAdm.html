@@ -32,7 +32,7 @@
                     <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
                         <label>身份</label>
                         <select class="form-control" ng-model="identity" ng-change="identityChange()">
-                            <option selected>教师</option>
+                            <option>教师</option>
                             <option>学生</option>
                         </select>
                     </div>
@@ -51,7 +51,7 @@
                 <div class="form-inline">
                     <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
                         <label>行数</label>
-                        <select class="form-control" id="teacherLinageSelect" ng-model="pageSize" ng-change="changePage()">
+                        <select class="form-control" id="teacherLinageSelect" ng-model="pageSize" ng-change="changePage('teacher')">
                             <option>2</option>
                             <option>3</option>
                             <option>4</option>
@@ -59,7 +59,7 @@
                         </select>
                     </div>
                     <div class="form-group ">
-                        <strong class="text-info">总计：{{count}}条记录</strong>
+                        <strong class="text-info">总计：{{countTeacher}}条记录</strong>
                     </div>
                     <div class="form-group" style="float: right">
                         <div class="btn-group">
@@ -97,6 +97,108 @@
                             <td style="font-weight: 400">{{item.username}}</td>
                             <td style="font-weight: 400">
                                 <input type="checkbox" class="checkbox" name="itemes" id="teacher{{item.id}}" ng-click="checkbox(item.id)"/>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="panel-body col-lg-12">
+                <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4"></div>
+                <div ng-include="'business/modules/manage/pagination.html'"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-hide="studentShow">
+    <div class="panel panel-primary col-lg-12">
+        <div class="row">
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="按姓名搜索" id="studentSearchName" name="studentSearchName" />
+                            <span class="input-group-btn">
+                                <button class="btn btn-default" type="button"  ng-click="setData()">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </button>
+                            </span>
+                        </div>
+                    </div>
+                    <div class="form-group col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                        <label>年级</label>
+                        <select class="form-control" ng-model="grade" ng-change="setData()" id="grade">
+                            <option>全部</option>
+                            <option ng-repeat="item in gradeName">{{item}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <label>身份</label>
+                        <select class="form-control" ng-model="identity" ng-change="identityChange()">
+                            <option>教师</option>
+                            <option>学生</option>
+                        </select>
+                    </div>
+                    <div class="form-group" style="float: right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-success"  title="按照当前搜索条件导出列表">导出列表</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="panel panel-primary col-lg-12">
+        <div class="row">
+            <div class="panel-body">
+                <div class="form-inline">
+                    <div class="form-group col-xs-2 col-sm-2 col-md-2 col-lg-2">
+                        <label for="linageSelect">行数</label>
+                        <select class="form-control" id="linageSelect" ng-model="pageSize" ng-change="changePage('student')">
+                            <option>2</option>
+                            <option>3</option>
+                            <option>4</option>
+                            <option>5</option>
+                        </select>
+                    </div>
+                    <div class="form-group ">
+                        <strong class="text-info">总计：{{count}}条记录</strong>
+                    </div>
+                    <div class="form-group" style="float: right">
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-warning" ng-click="deleteButton()" title="删除选手账户">删除选手</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-body">
+                <div class="table-responsive">
+                    <table id="studentList" class="table table-striped list">
+                        <thead>
+                        <tr>
+                            <th>序号</th>
+                            <th class="sortable" >姓名</th>
+                            <th class="sortable" >性别</th>
+                            <th class="sortable">证件号</th>
+                            <th class="sortable">年级</th>
+                            <th class="sortable">手机号</th>
+                            <th class="sortable">电子邮件</th>
+                            <th class="sortable">登录名</th>
+                            <th class="choose-th">选择</th>
+                        </tr>
+                        </thead>
+                        <tbody ng-repeat="item in allStudentMessage" id="formData">
+                        <tr >
+                            <td style="font-weight: 400">{{$index + 1 + (selPage - 1) * pageSize}}</td>
+                            <td style="font-weight: 400">{{item.name}}</td>
+                            <td style="font-weight: 400">{{item.sex}}</td>
+                            <td style="font-weight: 400">{{item.peopleId}}</td>
+                            <td style="font-weight: 400">{{item.grade}}</td>
+                            <td style="font-weight: 400">{{item.phone}}</td>
+                            <td style="font-weight: 400">{{item.email}}</td>
+                            <td style="font-weight: 400">{{item.username}}</td>
+                            <td style="font-weight: 400">
+                                <input type="checkbox" class="checkbox" name="itemes" id="student{{item.id}}" ng-click="checkbox(item.id)"/>
                             </td>
                         </tr>
                         </tbody>
