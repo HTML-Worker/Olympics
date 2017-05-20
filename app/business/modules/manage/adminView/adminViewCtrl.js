@@ -13,6 +13,7 @@
         $scope.dataViewHide = true;
         $scope.managementViewHide = true;
         $scope.examineViewHide = true;
+        $scope.gameIssueHide = true;
 
         $scope.backToLogin = function () {
             location.hash = "/login";
@@ -23,6 +24,7 @@
             $scope.newsNotesHide = true;
             $scope.managementViewHide = true;
             $scope.examineViewHide = true;
+            $scope.gameIssueHide = true;
         };
 
         $scope.managementShow = function () {
@@ -30,6 +32,7 @@
             $scope.newsNotesHide = true;
             $scope.dataViewHide = true;
             $scope.examineViewHide = true;
+            $scope.gameIssueHide = true;
         };
 
         $scope.examineShow = function () {
@@ -37,6 +40,15 @@
             $scope.managementViewHide = true;
             $scope.newsNotesHide = true;
             $scope.dataViewHide = true;
+            $scope.gameIssueHide = true;
         };
+
+        $scope.gameIssueShow = function () {
+            $scope.examineViewHide = true;
+            $scope.managementViewHide = true;
+            $scope.newsNotesHide = true;
+            $scope.dataViewHide = true;
+            $scope.gameIssueHide = false;
+        }
     }
 }());
