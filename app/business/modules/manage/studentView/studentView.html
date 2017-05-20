@@ -4,9 +4,9 @@
             <div class="panel-body">
                 <div class="form-group">
                         <input ng-click="dataViewShow()" class="btn  btn-primary btn-block" type="submit"  value="我的资料" />
-                    </div>
+                </div>
                 <div class="form-group">
-                    <input class="btn  btn-primary btn-block" type="submit"  value="竞赛管理" />
+                    <input ng-click="gameIssueShow()" class="btn  btn-primary btn-block" type="submit"  value="竞赛管理" />
                 </div>
                 <hr>
                 <div class="form-group">
@@ -23,6 +23,9 @@
         </div>
         <div ng-controller="dataStuViewCtrl" ng-hide="dataViewHide">
             <div ng-include="'business/modules/manage/studentView/fragmentsStu/dataViewStu/dataStuView.html'"></div>
+        </div>
+        <div ng-controller="gameIssueStuCtrl" ng-hide="gameIssueHide">
+            <div ng-include="'business/modules/manage/studentView/fragmentsStu/gameIssueStu/gameIssueStu.html'"></div>
         </div>
     </div>
 </div>

@@ -1,15 +1,15 @@
 (function () {
     angular
         .module("app")
-        .controller("gameIssueCtrl", gameIssueCtrl);
+        .controller("gameIssueAdmCtrl", gameIssueAdmCtrl);
 
-    gameIssueCtrl.$inject = [
+    gameIssueAdmCtrl.$inject = [
         "$scope",
         "$location",
         "$http"
     ];
 
-    function gameIssueCtrl($scope, $location, $http) {
+    function gameIssueAdmCtrl($scope, $location, $http) {
         $scope.entryType = selectData.entryType;
 
         /**

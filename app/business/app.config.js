@@ -11,7 +11,9 @@ var configData = {
         adminPEChange: globalUrl + "AdminMessage/adminPEChange",
         allTeacherMessage: globalUrl + "TeacherMessage/allTeacherMessage",
         teacherExamine: globalUrl + "TeacherMessage/teacherExamine",
-        getExamineTeacherMessage: globalUrl + "TeacherMessage/getExamineTeacherMessage"
+        getExamineTeacherMessage: globalUrl + "TeacherMessage/getExamineTeacherMessage",
+        getGameIssue: globalUrl + "GameIssue/getGameIssue",
+        changeStudentPay: globalUrl + "StudentMessage/changeStudentPay"
     },
     nav: [
         {
